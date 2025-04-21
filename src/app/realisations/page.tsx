@@ -101,39 +101,39 @@ export default function RealisationsPage() {
       <section className="py-20 px-4 bg-subtle-pattern relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary-50/30 to-transparent opacity-60 pointer-events-none" />
 
-        {isClient ? (
-          <motion.div
-            className="max-w-5xl mx-auto text-center relative z-10"
-            initial="hidden"
-            animate="visible"
-            variants={staggerChildren}
-            suppressHydrationWarning
-          >
-            <motion.h1
-              className="text-4xl md:text-5xl font-bold mb-6 text-gray-800"
-              variants={fadeInUp}
-              suppressHydrationWarning
+        {/* Vue statique par défaut pour le SSR, remplacée par la version animée côté client */}
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          {isClient ? (
+            <motion.div
+              className="w-full"
+              initial="hidden"
+              animate="visible"
+              variants={staggerChildren}
             >
-              Nos <span className="gradient-heading">réalisations</span>
-            </motion.h1>
-            <motion.p
-              className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto"
-              variants={fadeInUp}
-              suppressHydrationWarning
-            >
-              Découvrez comment nos solutions ont transformé les entreprises.
-            </motion.p>
-          </motion.div>
-        ) : (
-          <div className="max-w-5xl mx-auto text-center relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
-              Nos <span className="gradient-heading">réalisations</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-              Découvrez comment nos solutions ont transformé les entreprises.
-            </p>
-          </div>
-        )}
+              <motion.h1
+                className="text-4xl md:text-5xl font-bold mb-6 text-gray-800"
+                variants={fadeInUp}
+              >
+                Nos <span className="gradient-heading">réalisations</span>
+              </motion.h1>
+              <motion.p
+                className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto"
+                variants={fadeInUp}
+              >
+                Découvrez comment nos solutions ont transformé les entreprises.
+              </motion.p>
+            </motion.div>
+          ) : (
+            <>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+                Nos <span className="gradient-heading">réalisations</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
+                Découvrez comment nos solutions ont transformé les entreprises.
+              </p>
+            </>
+          )}
+        </div>
 
         {/* Éléments décoratifs améliorés */}
         <div className="absolute top-0 right-0 w-1/3 h-64 bg-gradient-to-bl from-primary-100 to-transparent opacity-20 rounded-bl-full" />
@@ -142,46 +142,24 @@ export default function RealisationsPage() {
 
       <SectionSeparator color="light" width="150px" />
 
-      {/* Nouvelle section avec la carte au trésor - uniquement rendue côté client */}
-      {isClient && (
-        <section className="relative overflow-hidden">
-          <div className="absolute top-20 left-0 w-full h-64 bg-gradient-to-tr from-primary-50 to-transparent opacity-30" />
-          <div className="absolute bottom-20 right-0 w-full h-64 bg-gradient-to-tl from-primary-50 to-transparent opacity-30" />
+      {/* Section avec la carte au trésor - squelette rendu côté serveur et complet côté client */}
+      <section className="relative overflow-hidden">
+        <div className="absolute top-20 left-0 w-full h-64 bg-gradient-to-tr from-primary-50 to-transparent opacity-30" />
+        <div className="absolute bottom-20 right-0 w-full h-64 bg-gradient-to-tl from-primary-50 to-transparent opacity-30" />
 
-          <div className="max-w-6xl mx-auto px-4 py-12 relative z-10">
-            <RevealOnScroll>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Notre Parcours de Réussite</h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Suivez le chemin de nos réalisations et découvrez l'impact concret de nos solutions sur les performances de nos clients.
-                </p>
-              </div>
-            </RevealOnScroll>
-
-            <TreasureMapLine milestones={treasureMilestones} />
-          </div>
-        </section>
-      )}
-
-      {/* Rendu côté serveur d'un placeholder si nécessaire */}
-      {!isClient && (
-        <section className="relative overflow-hidden py-12">
-          <div className="max-w-6xl mx-auto px-4 py-12 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 py-12 relative z-10">
+          <RevealOnScroll>
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">Notre Parcours de Réussite</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Suivez le chemin de nos réalisations et découvrez l'impact concret de nos solutions sur les performances de nos clients.
               </p>
             </div>
-            <div className="min-h-[150vh] relative">
-              {/* Placeholder côté serveur */}
-              <div className="w-full flex items-center justify-center">
-                <p className="text-gray-400">Chargement de la visualisation...</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+          </RevealOnScroll>
+
+          <TreasureMapLine milestones={treasureMilestones} />
+        </div>
+      </section>
 
       <SectionSeparator color="light" width="150px" />
 

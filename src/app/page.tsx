@@ -15,6 +15,7 @@ import {
   WaterDropEffect
 } from "@/components/ui/Decorations";
 import PowerBIDashboard from "@/components/ui/PowerBIDashboard";
+import { useState, useEffect } from "react";
 
 // Animation variants
 const fadeInUp = {
@@ -38,6 +39,20 @@ const staggerChildren = {
 
 // Composant pour encapsuler le logo animé et éviter les erreurs d'hydratation
 const AnimatedLogo = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <div className="flex justify-center mb-6">
+        <div className="w-20 h-20 bg-gray-100 rounded-full"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex justify-center mb-6">
       <Image
@@ -53,6 +68,20 @@ const AnimatedLogo = () => {
 
 // Composant pour encapsuler les animations de dashboard et éviter les erreurs d'hydratation
 const DashboardAnimations = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <div className="dashboard-animations min-h-[300px] flex items-center justify-center bg-white/5 rounded-lg">
+        <div className="text-gray-400">Chargement du dashboard...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="dashboard-animations" aria-hidden="true">
       <div className="animation-container">
@@ -109,6 +138,12 @@ const ServiceCard = ({
 };
 
 export default function HomePage() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="relative overflow-hidden">
       {/* Éléments décoratifs pour l'ensemble de la page */}
@@ -122,56 +157,98 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="section-lg bg-subtle-pattern relative overflow-hidden min-h-[calc(50vh)]" aria-labelledby="hero-heading">
         <div className="container-custom">
-          {/* Éléments décoratifs spécifiques à la section hero */}
-          <FloatingParticles count={15} className="opacity-40" aria-hidden="true" />
-          <Glow className="-top-20 -right-20" width={70} height={70} aria-hidden="true" />
+          {/* Éléments décoratifs spécifiques à la section hero - uniquement côté client */}
+          {isClient && (
+            <FloatingParticles count={15} className="opacity-40" aria-hidden="true" />
+          )}
+          {isClient && (
+            <Glow className="-top-20 -right-20" width={70} height={70} aria-hidden="true" />
+          )}
 
-          <motion.div
-            className="max-w-5xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={staggerChildren}
-          >
-            <AnimatedLogo />
-            <motion.h1
-              id="hero-heading"
-              className="text-4xl md:text-6xl font-bold mb-6 text-gray-700 leading-tight relative"
-              variants={fadeInUp}
-            >
-              <div className="inline-block relative">
-                <div className="absolute -top-10 -left-10" aria-hidden="true">
-                  <GlowingDot x={0} y={0} size={30} delay={0.5} />
+          <div className="max-w-5xl mx-auto text-center">
+            {isClient ? (
+              <motion.div
+                className="w-full"
+                initial="hidden"
+                animate="visible"
+                variants={staggerChildren}
+              >
+                <AnimatedLogo />
+                <motion.h1
+                  id="hero-heading"
+                  className="text-4xl md:text-6xl font-bold mb-6 text-gray-700 leading-tight relative"
+                  variants={fadeInUp}
+                >
+                  <div className="inline-block relative">
+                    <div className="absolute -top-10 -left-10" aria-hidden="true">
+                      <GlowingDot x={0} y={0} size={30} delay={0.5} />
+                    </div>
+                  </div>
+                  Nous construisons des solutions <span className="gradient-heading">informatiques</span> au service de votre <span className="gradient-heading">croissance</span>
+                </motion.h1>
+                <motion.p
+                  className="text-xl text-gray-500 mb-10 max-w-3xl mx-auto"
+                  variants={fadeInUp}
+                >
+                  Kyriel Services crée des solutions d'automatisation innovantes qui révolutionnent vos opérations et font gagner du temps à votre entreprise.
+                </motion.p>
+                <motion.div
+                  className="flex flex-col sm:flex-row gap-module-sm justify-center mb-10"
+                  variants={fadeInUp}
+                >
+                  <Link
+                    href="/services"
+                    className="btn btn-primary"
+                  >
+                    <span className="relative z-10">Découvrir nos services</span>
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="btn btn-outline group"
+                  >
+                    Contactez-nous
+                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
+                </motion.div>
+              </motion.div>
+            ) : (
+              <>
+                <AnimatedLogo />
+                <h1
+                  id="hero-heading"
+                  className="text-4xl md:text-6xl font-bold mb-6 text-gray-700 leading-tight relative"
+                >
+                  Nous construisons des solutions <span className="gradient-heading">informatiques</span> au service de votre <span className="gradient-heading">croissance</span>
+                </h1>
+                <p
+                  className="text-xl text-gray-500 mb-10 max-w-3xl mx-auto"
+                >
+                  Kyriel Services crée des solutions d'automatisation innovantes qui révolutionnent vos opérations et font gagner du temps à votre entreprise.
+                </p>
+                <div
+                  className="flex flex-col sm:flex-row gap-module-sm justify-center mb-10"
+                >
+                  <Link
+                    href="/services"
+                    className="btn btn-primary"
+                  >
+                    <span className="relative z-10">Découvrir nos services</span>
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="btn btn-outline group"
+                  >
+                    Contactez-nous
+                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
                 </div>
-              </div>
-              Nous construisons des solutions <span className="gradient-heading">informatiques</span> au service de votre <span className="gradient-heading">croissance</span>
-            </motion.h1>
-            <motion.p
-              className="text-xl text-gray-500 mb-10 max-w-3xl mx-auto"
-              variants={fadeInUp}
-            >
-              Kyriel Services crée des solutions d'automatisation innovantes qui révolutionnent vos opérations et font gagner du temps à votre entreprise.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-module-sm justify-center mb-10"
-              variants={fadeInUp}
-            >
-              <Link
-                href="/services"
-                className="btn btn-primary"
-              >
-                <span className="relative z-10">Découvrir nos services</span>
-              </Link>
-              <Link
-                href="/contact"
-                className="btn btn-outline group"
-              >
-                Contactez-nous
-                <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </Link>
-            </motion.div>
-          </motion.div>
+              </>
+            )}
+          </div>
 
           {/* Cercles décoratifs */}
           <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary-50 opacity-30" aria-hidden="true" />
@@ -184,7 +261,7 @@ export default function HomePage() {
       {/* Code example section */}
       <section className="section relative" aria-labelledby="solutions-heading">
         <div className="container-custom">
-          <WaterDropEffect className="opacity-40" aria-hidden="true" />
+          {isClient && <WaterDropEffect className="opacity-40" aria-hidden="true" />}
           <RevealOnScroll>
             <div className="max-w-4xl mx-auto">
               <div className="grid-cols-1-2 items-center">
@@ -218,13 +295,15 @@ export default function HomePage() {
       {/* Services Aperçu */}
       <section className="section bg-subtle-pattern relative" aria-labelledby="services-heading">
         <div className="container-custom">
-          {/* Points lumineux décoratifs */}
-          <div aria-hidden="true">
-            <GlowingDot x={10} y={30} size={8} />
-            <GlowingDot x={90} y={60} size={12} delay={1} />
-            <GlowingDot x={15} y={80} size={10} delay={2} />
-            <GlowingDot x={85} y={20} size={15} delay={0.5} />
-          </div>
+          {/* Points lumineux décoratifs - uniquement côté client */}
+          {isClient && (
+            <div aria-hidden="true">
+              <GlowingDot x={10} y={30} size={8} />
+              <GlowingDot x={90} y={60} size={12} delay={1} />
+              <GlowingDot x={15} y={80} size={10} delay={2} />
+              <GlowingDot x={85} y={20} size={15} delay={0.5} />
+            </div>
+          )}
 
           <RevealOnScroll>
             <h2 id="services-heading" className="section-title">Nos services</h2>

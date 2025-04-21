@@ -52,12 +52,13 @@ export default function Icon({
   // Classes combinées avec l'animation
   const combinedClassName = `${className} ${getAnimationClass()}`.trim();
 
-  // Si le composant n'est pas encore monté, render un placeholder
+  // Si le composant n'est pas encore monté, render un placeholder statique
   if (!mounted) {
     return (
       <div
-        className={combinedClassName}
+        className={className} // Pas d'animation sur le placeholder pour éviter les différences d'hydratation
         style={{ height: size, width: size }}
+        data-icon-placeholder="true"
       />
     );
   }
@@ -91,7 +92,11 @@ export default function Icon({
   const LucideIcon = LucideIcons[iconName as keyof typeof LucideIcons] as LucideIcon;
 
   if (!LucideIcon) {
-    console.warn(`Icône "${name}" introuvable dans la bibliothèque Lucide.`);
+    // En cas d'icône non trouvée, afficher une icône d'alerte (mais ne pas logger d'erreur en production)
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`Icône "${name}" introuvable dans la bibliothèque Lucide.`);
+    }
+
     return (
       <div className={combinedClassName} style={{ height: size, width: size }}>
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

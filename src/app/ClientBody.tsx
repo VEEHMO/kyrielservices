@@ -22,19 +22,19 @@ export default function ClientBody({
     return () => clearTimeout(timer);
   }, []);
 
-  // Fallback non-interactif côté serveur
+  // Fallback non-interactif côté serveur avec attribut data-hydrating pour CSS
   if (!isClient) {
     return (
-      <body className="antialiased" suppressHydrationWarning data-client-rendered="false">
+      <body className="antialiased" data-hydrating="true">
         {children}
       </body>
     );
   }
 
+  // Version client fully interactive
   return (
     <body
       className="antialiased"
-      suppressHydrationWarning
       data-client-rendered="true"
     >
       {children}

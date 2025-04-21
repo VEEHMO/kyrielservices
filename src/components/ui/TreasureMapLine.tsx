@@ -48,12 +48,19 @@ export const TreasureMapLine = ({ milestones, className = "" }: TreasureMapLineP
     return pathString;
   };
 
-  // Rendu côté serveur ou rendu initial côté client avant l'effet
+  // Rendu côté serveur - retourner un squelette statique
   if (!isClient) {
-    return <div className={`relative min-h-[150vh] ${className}`} ref={containerRef} />;
+    return (
+      <div className={`relative min-h-[150vh] ${className}`} ref={containerRef}>
+        {/* Squelette du chemin sans interactivité */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 h-full">
+          <div className="h-full w-[4px] bg-gray-100" />
+        </div>
+      </div>
+    );
   }
 
-  // Seulement après l'initialisation côté client, nous utilisons les hooks de Framer Motion
+  // Une fois côté client, on peut utiliser les hooks de Framer Motion
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end center"]
@@ -63,9 +70,9 @@ export const TreasureMapLine = ({ milestones, className = "" }: TreasureMapLineP
   const pathLength = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
 
   return (
-    <div ref={containerRef} className={`relative min-h-[150vh] ${className}`} suppressHydrationWarning>
+    <div ref={containerRef} className={`relative min-h-[150vh] ${className}`}>
       <div className="absolute left-1/2 transform -translate-x-1/2 h-full">
-        <svg className="h-full" width="100" viewBox="0 0 100 1000" fill="none" preserveAspectRatio="xMidYMax meet" suppressHydrationWarning>
+        <svg className="h-full" width="100" viewBox="0 0 100 1000" fill="none" preserveAspectRatio="xMidYMax meet">
           {/* Fausse ligne complète en arrière-plan (plus claire) */}
           <path
             d={path}
@@ -75,7 +82,6 @@ export const TreasureMapLine = ({ milestones, className = "" }: TreasureMapLineP
             strokeLinecap="round"
             fill="none"
             opacity="0.3"
-            suppressHydrationWarning
           />
 
           {/* Ligne animée au scroll */}
@@ -87,13 +93,12 @@ export const TreasureMapLine = ({ milestones, className = "" }: TreasureMapLineP
             strokeLinecap="round"
             fill="none"
             style={{ pathLength }}
-            suppressHydrationWarning
           />
         </svg>
       </div>
 
-      {/* Croix et contenus - ne les rendre que côté client */}
-      {isClient && milestones.map((milestone) => (
+      {/* Croix et contenus */}
+      {milestones.map((milestone) => (
         <TreasureMilestone
           key={milestone.id}
           milestone={milestone}
@@ -152,7 +157,6 @@ const TreasureMilestone = ({
       ref={ref}
       className="absolute left-1/2 transform -translate-x-1/2 w-full"
       style={{ top: topPosition }}
-      suppressHydrationWarning
     >
       {/* Croix (X) de la carte au trésor */}
       <motion.div
@@ -160,10 +164,9 @@ const TreasureMilestone = ({
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
         variants={scaleVariants}
-        suppressHydrationWarning
       >
         <div className="relative">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" suppressHydrationWarning>
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <motion.path
               d="M10,10 L30,30"
               stroke="var(--accent)"
@@ -172,7 +175,6 @@ const TreasureMilestone = ({
               initial={{ pathLength: 0 }}
               animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              suppressHydrationWarning
             />
             <motion.path
               d="M30,10 L10,30"
@@ -182,7 +184,6 @@ const TreasureMilestone = ({
               initial={{ pathLength: 0 }}
               animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
               transition={{ duration: 0.3, delay: 0.4 }}
-              suppressHydrationWarning
             />
           </svg>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full w-6 h-6 border-2 border-accent" />
@@ -195,7 +196,6 @@ const TreasureMilestone = ({
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
         variants={xVariants}
-        suppressHydrationWarning
       >
         <div className="bg-white rounded-lg p-6 shadow-soft border border-primary-100 transition-all duration-300 relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-100 to-transparent rounded-bl-full opacity-20 transition-transform duration-300 group-hover:scale-110" />

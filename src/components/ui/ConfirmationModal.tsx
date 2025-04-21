@@ -1,7 +1,7 @@
 'use client';
 
 import type React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface ConfirmationModalProps {
@@ -19,8 +19,17 @@ export default function ConfirmationModal({
   message,
   buttonText = 'Fermer'
 }: ConfirmationModalProps) {
-  // Fermer le modal avec Escape
+  const [isClient, setIsClient] = useState(false);
+
+  // S'assurer que le composant est monté côté client
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Fermer le modal avec Escape et gérer le défilement - seulement côté client
+  useEffect(() => {
+    if (!isClient) return;
+
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
         onClose();
@@ -38,12 +47,17 @@ export default function ConfirmationModal({
       window.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'auto';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, isClient]);
 
   // Empêcher la propagation des clics dans le modal
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
+
+  // Ne rien rendre côté serveur
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <AnimatePresence>

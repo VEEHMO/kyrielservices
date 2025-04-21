@@ -76,11 +76,12 @@ export default function RevealOnScroll({
     }
   };
 
-  // Si nous ne sommes pas côté client, retourner un élément sans animation
+  // Rendu côté serveur - pas d'animation
   if (!isClient) {
     return <div className={className}>{children}</div>;
   }
 
+  // Rendu côté client avec animation
   const animationClass = getAnimationClass();
   const delayStyle = delay ? { transitionDelay: `${delay}ms` } : {};
 
@@ -89,7 +90,6 @@ export default function RevealOnScroll({
       ref={ref}
       className={`${animationClass} ${isVisible ? 'active' : ''} ${className}`}
       style={delayStyle}
-      suppressHydrationWarning
     >
       {children}
     </div>

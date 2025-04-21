@@ -11,6 +11,16 @@ export const GlowingDot = ({
   y = 0,
   className = ''
 }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // Ne rien rendre côté serveur
+  }
+
   return (
     <motion.div
       className={`absolute rounded-full opacity-60 blur-md ${className}`}
@@ -44,6 +54,16 @@ export const Glow = ({
   height = 60,
   color = "#188ce4"
 }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // Ne rien rendre côté serveur
+  }
+
   return (
     <div className={`absolute pointer-events-none ${className}`}>
       <div
@@ -59,6 +79,7 @@ export const Glow = ({
 };
 
 export const Grid = ({ className = '' }) => {
+  // Pas besoin de contrôle client/serveur, ce composant est statique
   return (
     <div className={`absolute inset-0 overflow-hidden opacity-5 pointer-events-none ${className}`}>
       <div
@@ -83,8 +104,11 @@ export const FloatingParticles = ({ count = 30, className = '' }) => {
     color: string;
     delay: number;
   }>>([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+
     const colors = ['#188ce4', '#1581cf', '#4fb3ef', '#75c5f0'];
 
     const newParticles = Array.from({ length: count }).map((_, i) => ({
@@ -99,6 +123,10 @@ export const FloatingParticles = ({ count = 30, className = '' }) => {
 
     setParticles(newParticles);
   }, [count]);
+
+  if (!isClient) {
+    return null; // Ne rien rendre côté serveur
+  }
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
@@ -131,6 +159,28 @@ export const FloatingParticles = ({ count = 30, className = '' }) => {
 };
 
 export const CodeBlock = ({ className = '' }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Version simplifiée pour le rendu serveur
+  if (!isClient) {
+    return (
+      <div className={`bg-slate-900 rounded-lg shadow-xl overflow-hidden min-h-[200px] ${className}`}>
+        <div className="flex items-center px-4 py-2 bg-slate-800">
+          <div className="flex space-x-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full" />
+            <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+            <div className="w-3 h-3 bg-green-500 rounded-full" />
+          </div>
+          <div className="ml-4 text-gray-400 text-xs">code.js</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <motion.div
       className={`bg-slate-900 rounded-lg shadow-xl overflow-hidden ${className}`}
@@ -185,6 +235,24 @@ export const CodeBlock = ({ className = '' }) => {
 };
 
 export const AnimatedGradientBorder = ({ className = '', children }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Version simplifiée pour le rendu serveur
+  if (!isClient) {
+    return (
+      <div className={`relative ${className}`}>
+        <div className="absolute inset-0 rounded-lg border-2 border-primary-100">
+          <div className="absolute inset-0 bg-white rounded-lg dark:bg-gray-950" />
+        </div>
+        <div className="relative">{children}</div>
+      </div>
+    );
+  }
+
   return (
     <div className={`relative ${className}`}>
       <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#188ce4] via-[#4fb3ef] to-[#1581cf]
@@ -207,6 +275,16 @@ export const AnimatedGradientBorder = ({ className = '', children }) => {
 // }
 
 export const WaterDropEffect = ({ className = '' }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // Ne rien rendre côté serveur
+  }
+
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
       <svg width="0" height="0">
