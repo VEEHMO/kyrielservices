@@ -87,6 +87,8 @@ const ServiceCard = ({
         size={48}
         className="card-icon"
         aria-hidden="true"
+        animated={true}
+        animation="hover"
       />
       <h3 className="text-xl font-semibold mb-2 text-gray-700">{title}</h3>
       <p className="text-gray-500">{description}</p>

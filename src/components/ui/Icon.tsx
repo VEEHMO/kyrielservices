@@ -1,8 +1,9 @@
 // Composant pour afficher des icônes de manière cohérente entre SSR et CSR
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 
 type IconProps = {
@@ -10,13 +11,61 @@ type IconProps = {
   size?: number;
   className?: string;
   type?: 'custom' | 'lucide';
+  animated?: boolean;
+  animation?: 'pulse' | 'bounce' | 'spin' | 'hover' | 'none';
 };
 
-export default function Icon({ name, size = 24, className = '', type = 'custom' }: IconProps) {
+export default function Icon({
+  name,
+  size = 24,
+  className = '',
+  type = 'custom',
+  animated = false,
+  animation = 'hover'
+}: IconProps) {
+  // État pour gérer le montage côté client
+  const [mounted, setMounted] = useState(false);
+
+  // S'assurer que le composant est monté côté client pour éviter les erreurs d'hydratation
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Déterminer les classes d'animation en fonction des props
+  const getAnimationClass = () => {
+    if (!animated) return '';
+
+    switch (animation) {
+      case 'pulse':
+        return 'animate-pulse';
+      case 'bounce':
+        return 'animate-bounce';
+      case 'spin':
+        return 'animate-spin';
+      case 'hover':
+        return 'transition-transform duration-300 hover:scale-110';
+      default:
+        return '';
+    }
+  };
+
+  // Classes combinées avec l'animation
+  const combinedClassName = `${className} ${getAnimationClass()}`.trim();
+
+  // Si le composant n'est pas encore monté, render un placeholder
+  if (!mounted) {
+    return (
+      <div
+        className={combinedClassName}
+        style={{ height: size, width: size }}
+      />
+    );
+  }
+
   // Si c'est une icône personnalisée (SVG existant)
   if (type === 'custom') {
     return (
-      <div className={className} style={{ height: size, width: size }}>
+      <div className={combinedClassName} style={{ height: size, width: size }}>
         <Image
           src={`/assets/icons/${name}.svg`}
           alt={name}
@@ -44,7 +93,7 @@ export default function Icon({ name, size = 24, className = '', type = 'custom' 
   if (!LucideIcon) {
     console.warn(`Icône "${name}" introuvable dans la bibliothèque Lucide.`);
     return (
-      <div className={className} style={{ height: size, width: size }}>
+      <div className={combinedClassName} style={{ height: size, width: size }}>
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
           <line x1="12" y1="9" x2="12" y2="13" />
@@ -55,5 +104,5 @@ export default function Icon({ name, size = 24, className = '', type = 'custom' 
   }
 
   const IconComponent = LucideIcon;
-  return <IconComponent size={size} className={className} />;
+  return <IconComponent size={size} className={combinedClassName} />;
 }
