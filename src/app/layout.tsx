@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import ClientBody from "./ClientBody";
 import Footer from "@/components/ui/Footer";
 import HeaderClient from "@/components/ui/HeaderClient";
+import AccessibilityControl from "@/components/ui/AccessibilityControl";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const montserrat = Montserrat({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -27,11 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="fr" className={`${montserrat.variable}`}>
       <ClientBody>
+        <a href="#main-content" className="skip-to-content">Aller au contenu principal</a>
         <HeaderClient />
-        <main>{children}</main>
+        <main id="main-content" tabIndex={-1}>{children}</main>
         <Footer />
+        <AccessibilityControl />
       </ClientBody>
     </html>
   );
