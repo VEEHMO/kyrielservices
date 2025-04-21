@@ -8,23 +8,28 @@ if (!MONGODB_URI) {
 }
 
 /**
+ * Interface pour le type global de mongoose
+ */
+interface GlobalMongoose {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+}
+
+/**
  * Variables globales pour maintenir la connexion
  * à la base de données à travers les rechargements.
  */
 declare global {
-  var mongoose: {
-    conn: typeof mongoose | null;
-    promise: Promise<typeof mongoose> | null;
-  };
+  // eslint-disable-next-line no-var
+  var mongodbConnection: GlobalMongoose;
 }
 
 // Initialisation des variables globales
-if (!global.mongoose) {
-  global.mongoose = {
-    conn: null,
-    promise: null,
-  };
-}
+const globalAny = global as any;
+globalAny.mongodbConnection = globalAny.mongodbConnection || {
+  conn: null,
+  promise: null,
+};
 
 /**
  * Mode de secours si MongoDB n'est pas disponible
@@ -36,10 +41,10 @@ const fallbackStore: any[] = [];
  * Fonction pour se connecter à MongoDB
  * Réutilise la connexion existante si disponible
  */
-export async function connectToDatabase() {
+export async function connectToDatabase(): Promise<typeof mongoose | null> {
   // Si une connexion existe déjà, on la retourne
-  if (global.mongoose.conn) {
-    return global.mongoose.conn;
+  if (globalAny.mongodbConnection.conn) {
+    return globalAny.mongodbConnection.conn;
   }
 
   // Si MongoDB n'est pas configuré, on retourne null
@@ -49,9 +54,9 @@ export async function connectToDatabase() {
   }
 
   // Si une promesse de connexion est en cours, on attend sa résolution
-  if (!global.mongoose.promise) {
+  if (!globalAny.mongodbConnection.promise) {
     // Options de connexion pour MongoDB
-    const opts = {
+    const opts: mongoose.ConnectOptions = {
       bufferCommands: false,
       retryWrites: true,
       w: 'majority',
@@ -61,11 +66,11 @@ export async function connectToDatabase() {
     };
 
     // Création d'une nouvelle promesse de connexion
-    global.mongoose.promise = mongoose
+    globalAny.mongodbConnection.promise = mongoose
       .connect(MONGODB_URI, opts)
-      .then((mongoose) => {
+      .then((mongooseInstance) => {
         console.log('✅ Connexion à MongoDB établie');
-        return mongoose;
+        return mongooseInstance;
       })
       .catch((error) => {
         console.error('❌ Erreur de connexion à MongoDB:', error);
@@ -76,11 +81,11 @@ export async function connectToDatabase() {
 
   try {
     // Attente de la résolution de la promesse
-    global.mongoose.conn = await global.mongoose.promise;
-    return global.mongoose.conn;
+    globalAny.mongodbConnection.conn = await globalAny.mongodbConnection.promise;
+    return globalAny.mongodbConnection.conn;
   } catch (e) {
     console.error('❌ Erreur lors de la connexion à MongoDB:', e);
-    global.mongoose.promise = null;
+    globalAny.mongodbConnection.promise = null;
     return null;
   }
 }

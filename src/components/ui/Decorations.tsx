@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 export const GlowingDot = ({
@@ -184,11 +184,25 @@ export const CodeBlock = ({ className = '' }) => {
   );
 };
 
-export const AnimatedGradientBorder = ({ className = '', children }) => {
+export const AnimatedGradientBorder = ({
+  className = '',
+  children
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className={`relative ${className}`}>
-      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#188ce4] via-[#4fb3ef] to-[#1581cf]
-                      animate-border p-[2px]">
+      <div
+        className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#188ce4] via-[#4fb3ef] to-[#1581cf]
+                      animate-border p-[2px]"
+      >
         <div className="absolute inset-0 bg-white rounded-lg dark:bg-gray-950" />
       </div>
       <div className="relative">{children}</div>
@@ -212,7 +226,12 @@ export const WaterDropEffect = ({ className = '' }) => {
       <svg width="0" height="0">
         <filter id="goo">
           <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+            result="goo"
+          />
         </filter>
       </svg>
 
