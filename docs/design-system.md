@@ -214,11 +214,130 @@ Plusieurs classes d'animation sont disponibles :
 
 ## Icônes
 
-Nous utilisons un ensemble cohérent d'icônes, accessibles via le composant `Icon` :
+Nous utilisons la bibliothèque [Lucide React](https://lucide.dev/) pour un ensemble cohérent d'icônes vectorielles modernes et accessibles. Ces icônes sont facilement personnalisables en taille et en couleur.
+
+### Utilisation de base
+
+Les icônes sont accessibles via le composant `Icon` :
 
 ```jsx
-<Icon name="web" className="card-icon" />
+// Icône standard de Lucide
+<Icon name="settings" type="lucide" size={24} className="text-primary" />
+
+// Icône personnalisée (SVG stocké dans /public/assets/icons/)
+<Icon name="automation" type="custom" size={64} className="text-primary" />
 ```
+
+### Catégories d'icônes
+
+Nos icônes sont organisées en trois catégories principales pour faciliter leur utilisation :
+
+1. **Navigation** : Utilisées pour les éléments d'interface de navigation (menu, flèches, recherche...)
+2. **Actions** : Représentent des actions que l'utilisateur peut effectuer (ajouter, supprimer, éditer...)
+3. **Services** : Illustrent les services et fonctionnalités métier de Kyriel Services
+
+### Icônes de navigation
+
+| Nom | Description | Aperçu |
+|-----|-------------|--------|
+| home | Accueil | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> |
+| menu | Menu | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg> |
+| search | Recherche | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> |
+| chevron-down | Déplier | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg> |
+
+### Icônes d'actions
+
+| Nom | Description | Aperçu |
+|-----|-------------|--------|
+| mail | Email | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> |
+| phone | Téléphone | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> |
+| plus | Ajouter | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> |
+| edit | Modifier | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> |
+
+### Icônes de services
+
+| Nom | Service | Aperçu |
+|-----|---------|--------|
+| settings | Automatisation | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg> |
+| tool | Outils | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> |
+| globe | Web | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> |
+| message-square | Communication | <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> |
+
+### Collection complète
+
+Pour explorer toutes les icônes disponibles, consultez le composant `IconCollection` qui affiche l'ensemble des icônes organisées par catégorie :
+
+```jsx
+// Afficher toutes les icônes
+<IconCollection category="all" />
+
+// Afficher uniquement les icônes de navigation
+<IconCollection category="navigation" />
+```
+
+### Personnalisation des icônes
+
+Les icônes peuvent être personnalisées avec les propriétés suivantes :
+
+- `size` : Taille de l'icône en pixels (par défaut : 24px)
+- `className` : Classes CSS pour modifier la couleur, les marges, etc.
+- `type` : Type d'icône ('lucide' ou 'custom')
+
+### Couleurs d'icônes
+
+Les icônes héritent de la couleur du texte par défaut, mais peuvent être colorées à l'aide des classes de couleur Tailwind :
+
+```jsx
+<Icon name="settings" type="lucide" className="text-primary" />
+<Icon name="settings" type="lucide" className="text-secondary" />
+<Icon name="settings" type="lucide" className="text-accent" />
+<Icon name="settings" type="lucide" className="text-gray-400" />
+```
+
+## Optimisation des images
+
+Toutes les images du projet sont optimisées pour un chargement rapide et une expérience utilisateur fluide.
+
+### Format WebP
+
+Le format WebP est utilisé pour toutes les images de contenu car il offre :
+
+- Une compression supérieure (30-80% plus petite que JPEG ou PNG)
+- Un support de la transparence (comme PNG)
+- Une excellente qualité visuelle
+
+```jsx
+// Utilisation optimale des images
+<Image
+  src="/assets/images/business-growth.webp"
+  alt="Description de l'image"
+  width={640}
+  height={360}
+  className="rounded-lg"
+/>
+```
+
+### Règles d'optimisation
+
+1. **Format** - Utiliser WebP pour toutes les images de contenu
+2. **Taille** - Redimensionner les images à la taille maximale nécessaire
+3. **Lazy loading** - Utiliser le lazy loading par défaut via Next.js Image
+4. **Alt text** - Toujours fournir un texte alternatif descriptif pour l'accessibilité
+
+### Script d'optimisation
+
+Un script est disponible pour convertir les images existantes au format WebP :
+
+```bash
+node scripts/convert-images.mjs
+```
+
+### Guidelines pour les nouveaux assets
+
+- Résolution maximale recommandée : 1920px de large (pour les images pleine largeur)
+- Résolution maximale des vignettes : 800px
+- Poids cible : < 200KB pour les grandes images, < 50KB pour les vignettes
+- Toujours fournir une version WebP
 
 ## Utilisation du Design System
 

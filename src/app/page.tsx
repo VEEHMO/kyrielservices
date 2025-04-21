@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Icon from "@/components/ui/Icon";
+import { SERVICE_ICON_MAPPING } from "@/components/ui/IconCollection";
 import { motion } from "framer-motion";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import SectionSeparator from "@/components/ui/SectionSeparator";
@@ -74,10 +75,19 @@ const ServiceCard = ({
   title: string;
   description: string;
 }) => {
+  // Utiliser la conversion d'icônes si c'est une ancienne icône, sinon utiliser le nom directement
+  const lucideIconName = SERVICE_ICON_MAPPING[iconName as keyof typeof SERVICE_ICON_MAPPING] || iconName;
+
   return (
     <div className="service-card hover:translate-y-[-5px] h-full relative overflow-hidden group focus-within:ring-2 focus-within:ring-primary">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary-700/5 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500" />
-      <Icon name={iconName} className="card-icon" aria-hidden="true" />
+      <Icon
+        name={lucideIconName}
+        type="lucide"
+        size={48}
+        className="card-icon"
+        aria-hidden="true"
+      />
       <h3 className="text-xl font-semibold mb-2 text-gray-700">{title}</h3>
       <p className="text-gray-500">{description}</p>
       <div className="mt-4">

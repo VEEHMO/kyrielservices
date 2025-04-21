@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import Link from "next/link";
 import SectionSeparator from "@/components/ui/SectionSeparator";
+import { SERVICE_ICON_MAPPING } from "@/components/ui/IconCollection";
 
 // Animation variants
 const fadeInUp = {
@@ -61,7 +62,7 @@ export default function ServicesPage() {
           <div className="grid md:grid-cols-2 gap-8">
             <RevealOnScroll direction="left">
               <div id="automatisation" className="service-card shadow-soft">
-                <Icon name="automation" className="mb-4" />
+                <Icon name={SERVICE_ICON_MAPPING.automation} type="lucide" size={48} className="mb-4 text-primary" />
                 <h2 className="text-2xl font-semibold mb-4 text-[#188ce4]">Automatisation</h2>
                 <p className="text-neutral-700 mb-4">Libérez du temps en automatisant factures, relances, mails, tâches récurrentes… Solutions sur-mesure pour entrepreneurs exigeants.</p>
                 <ul className="space-y-2 text-neutral-600">
@@ -83,7 +84,7 @@ export default function ServicesPage() {
 
             <RevealOnScroll direction="right">
               <div id="outils" className="service-card shadow-soft">
-                <Icon name="tools" className="mb-4" />
+                <Icon name={SERVICE_ICON_MAPPING.tools} type="lucide" size={48} className="mb-4 text-primary" />
                 <h2 className="text-2xl font-semibold mb-4 text-[#188ce4]">Développement d'outils</h2>
                 <p className="text-neutral-700 mb-4">Création d'outils sur Excel, Python ou Power BI pour un suivi plus simple, une gestion plus efficace, des reportings automatisés.</p>
                 <ul className="space-y-2 text-neutral-600">
@@ -105,7 +106,7 @@ export default function ServicesPage() {
 
             <RevealOnScroll direction="left">
               <div id="web" className="service-card shadow-soft">
-                <Icon name="web" className="mb-4" />
+                <Icon name={SERVICE_ICON_MAPPING.web} type="lucide" size={48} className="mb-4 text-primary" />
                 <h2 className="text-2xl font-semibold mb-4 text-[#188ce4]">Création de sites web</h2>
                 <p className="text-neutral-700 mb-4">Sites vitrine, institutionnels ou e-commerce. Solutions rapides, sophistiquées ou sur-mesure selon votre besoin.</p>
                 <ul className="space-y-2 text-neutral-600">
@@ -127,7 +128,7 @@ export default function ServicesPage() {
 
             <RevealOnScroll direction="right">
               <div id="communication" className="service-card shadow-soft">
-                <Icon name="communication" className="mb-4" />
+                <Icon name={SERVICE_ICON_MAPPING.communication} type="lucide" size={48} className="mb-4 text-primary" />
                 <h2 className="text-2xl font-semibold mb-4 text-[#188ce4]">Communication digitale</h2>
                 <p className="text-neutral-700 mb-4">Conseils, mise en place et accompagnement pour renforcer votre visibilité et votre notoriété sur le web.</p>
                 <ul className="space-y-2 text-neutral-600">

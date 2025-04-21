@@ -242,6 +242,12 @@ export default function Footer() {
             >
               Politique de confidentialité
             </Link>
+            <Link
+              href="/design-system"
+              className="hover:text-white transition-colors focus:outline-none focus:underline"
+            >
+              Design System
+            </Link>
           </nav>
         </div>
       </div>
