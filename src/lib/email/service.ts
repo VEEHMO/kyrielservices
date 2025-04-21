@@ -1,4 +1,3 @@
-// @ts-ignore
 import nodemailer from 'nodemailer';
 import type { ContactFormData } from '@/lib/types';
 

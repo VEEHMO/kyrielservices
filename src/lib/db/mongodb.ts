@@ -11,13 +11,11 @@ if (!MONGODB_URI) {
  * Variables globales pour maintenir la connexion
  * à la base de données à travers les rechargements.
  */
-interface MongooseGlobal {
-  conn: mongoose.Mongoose | null;
-  promise: Promise<mongoose.Mongoose | null> | null;
-}
-
 declare global {
-  var mongoose: MongooseGlobal;
+  var mongoose: {
+    conn: typeof mongoose | null;
+    promise: Promise<typeof mongoose> | null;
+  };
 }
 
 // Initialisation des variables globales
@@ -38,7 +36,7 @@ const fallbackStore: any[] = [];
  * Fonction pour se connecter à MongoDB
  * Réutilise la connexion existante si disponible
  */
-export async function connectToDatabase(): Promise<mongoose.Mongoose | null> {
+export async function connectToDatabase() {
   // Si une connexion existe déjà, on la retourne
   if (global.mongoose.conn) {
     return global.mongoose.conn;
@@ -53,9 +51,10 @@ export async function connectToDatabase(): Promise<mongoose.Mongoose | null> {
   // Si une promesse de connexion est en cours, on attend sa résolution
   if (!global.mongoose.promise) {
     // Options de connexion pour MongoDB
-    const opts: mongoose.ConnectOptions = {
+    const opts = {
       bufferCommands: false,
       retryWrites: true,
+      w: 'majority',
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,

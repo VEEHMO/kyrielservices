@@ -20,17 +20,9 @@ export default function RevealOnScroll({
   className = '',
 }: RevealProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isClient, setIsClient] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  // S'assurer que nous sommes côté client pour éviter les problèmes d'hydratation
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isClient) return; // Ne pas créer d'observer pendant l'hydratation
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -58,7 +50,7 @@ export default function RevealOnScroll({
         observer.unobserve(currentRef);
       }
     };
-  }, [once, threshold, isClient]);
+  }, [once, threshold]);
 
   // Choisir la classe CSS en fonction de la direction
   const getAnimationClass = () => {
@@ -71,17 +63,12 @@ export default function RevealOnScroll({
         return 'reveal-left';
       case 'right':
         return 'reveal-right';
+      case 'none':
       default:
         return 'reveal';
     }
   };
 
-  // Rendu côté serveur - pas d'animation
-  if (!isClient) {
-    return <div className={className}>{children}</div>;
-  }
-
-  // Rendu côté client avec animation
   const animationClass = getAnimationClass();
   const delayStyle = delay ? { transitionDelay: `${delay}ms` } : {};
 

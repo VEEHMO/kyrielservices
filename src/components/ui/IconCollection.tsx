@@ -63,14 +63,13 @@ export const SERVICE_ICON_MAPPING = {
 };
 
 // Animations disponibles pour la démonstration
-const ANIMATIONS = ['none', 'hover', 'pulse', 'bounce', 'spin'] as const;
-type AnimationType = typeof ANIMATIONS[number];
+const ANIMATIONS = ['none', 'hover', 'pulse', 'bounce', 'spin'];
 
 export default function IconCollection({ category = 'all' }: IconCollectionProps) {
   // Utilisation de useState et useEffect pour le rendu côté client
   const [mounted, setMounted] = useState(false);
   const [filteredIcons, setFilteredIcons] = useState<IconDefinition[]>([]);
-  const [selectedAnimation, setSelectedAnimation] = useState<AnimationType>('hover');
+  const [selectedAnimation, setSelectedAnimation] = useState<string>('hover');
 
   useEffect(() => {
     setMounted(true);

@@ -247,7 +247,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#188ce4] via-[#4fb3ef] to-[#1581cf] animate-border opacity-70 blur-sm" />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#188ce4] via-[#4fb3ef] to-[#1581cf] animate-border opacity-70 blur-sm"></div>
                   <button
                     type="submit"
                     disabled={isSubmitting}
