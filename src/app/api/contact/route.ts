@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { saveContact, sendNotificationEmail, type ContactFormData } from '@/lib/supabase';
+import { handleContactSubmission } from '@/lib/services/contact';
+import type { ContactFormData } from '@/lib/types';
 
 export async function POST(request: Request) {
   try {
@@ -14,28 +15,22 @@ export async function POST(request: Request) {
       );
     }
 
-    // Sauvegarder le contact dans Supabase
-    const saveResult = await saveContact(formData);
+    // Utilisation du service de contact pour gérer la soumission
+    const result = await handleContactSubmission(formData);
 
-    if (!saveResult.success) {
-      console.error('Erreur lors de l\'enregistrement du contact:', saveResult.error);
+    // Gestion de la réponse en fonction du résultat
+    if (!result.success) {
+      console.error('Erreur lors du traitement du formulaire:', result.error);
       return NextResponse.json(
-        { success: false, message: 'Erreur lors de l\'enregistrement de votre message' },
+        { success: false, message: result.message },
         { status: 500 }
       );
     }
 
-    // Envoyer un email de notification
-    const emailResult = await sendNotificationEmail(formData);
-
-    if (!emailResult.success) {
-      console.warn('Email de notification non envoyé:', emailResult.error);
-      // Continuer malgré l'échec d'envoi d'email
-    }
-
+    // Retour du succès
     return NextResponse.json({
       success: true,
-      message: 'Votre message a été envoyé avec succès'
+      message: result.message
     });
 
   } catch (error) {

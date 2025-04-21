@@ -4,8 +4,9 @@ import { useState } from 'react';
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import SectionSeparator from "@/components/ui/SectionSeparator";
 import { motion } from "framer-motion";
-import type { ContactFormData } from '@/lib/supabase';
+import type { ContactFormData } from '@/lib/types';
 import { GlowingDot, Glow, FloatingParticles, Grid } from "@/components/ui/Decorations";
+import ConfirmationModal from "@/components/ui/ConfirmationModal";
 
 // Animation variants
 const fadeInUp = {
@@ -32,11 +33,15 @@ export default function ContactPage() {
   const [formData, setFormData] = useState<ContactFormData>({
     nom: '',
     email: '',
+    telephone: '', // Ajout du champ téléphone
     sujet: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+
+  // État pour gérer l'affichage du modal de confirmation
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -65,14 +70,17 @@ export default function ContactPage() {
         throw new Error(result.message || 'Une erreur est survenue');
       }
 
-      // Réinitialiser le formulaire et afficher le message de confirmation
+      // Réinitialiser le formulaire
       setFormData({
         nom: '',
         email: '',
+        telephone: '', // Réinitialiser le champ téléphone
         sujet: '',
         message: ''
       });
-      setSubmitted(true);
+
+      // Afficher le modal de confirmation au lieu de changer l'état submitted
+      setShowConfirmationModal(true);
     } catch (error) {
       console.error('Erreur lors de l\'envoi du formulaire:', error);
       setFormError(
@@ -85,8 +93,23 @@ export default function ContactPage() {
     }
   };
 
+  const handleCloseModal = () => {
+    setShowConfirmationModal(false);
+    // Optionnel: changer l'état submitted comme auparavant
+    // setSubmitted(true);
+  };
+
   return (
     <div className="relative overflow-hidden">
+      {/* Modal de confirmation */}
+      <ConfirmationModal
+        isOpen={showConfirmationModal}
+        onClose={handleCloseModal}
+        title="Message envoyé !"
+        message="Nous avons bien reçu votre message et reviendrons vers vous rapidement."
+        buttonText="Fermer"
+      />
+
       {/* Éléments décoratifs pour l'ensemble de la page */}
       <div className="fixed inset-0 pointer-events-none opacity-30">
         <Grid className="opacity-5" />
@@ -132,113 +155,110 @@ export default function ContactPage() {
         <div className="max-w-3xl mx-auto relative">
           <div className="absolute -z-10 -top-10 -right-20 w-64 h-64 bg-blue-50 rounded-full opacity-40 blur-3xl" />
 
-          {submitted ? (
-            <RevealOnScroll>
-              <div className="glass-panel rounded-xl p-12 text-center shadow-soft relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 opacity-50" />
-                <div className="relative z-10">
-                  <div className="text-6xl mb-6 text-[#188ce4]">✓</div>
-                  <h2 className="text-2xl font-semibold mb-4 text-neutral-900">Votre message a été envoyé</h2>
-                  <p className="text-neutral-700 mb-6">Nous reviendrons vers vous rapidement pour discuter de votre projet.</p>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="text-[#188ce4] hover:text-[#1581cf] font-medium relative overflow-hidden group"
+          {/* Le formulaire est toujours affiché, plus besoin de gérer submitted */}
+          <RevealOnScroll>
+            <form
+              className="bg-white rounded-xl shadow-soft p-10 border border-blue-100 relative overflow-hidden"
+              onSubmit={handleSubmit}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 to-transparent pointer-events-none" />
+
+              {formError && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
+                  {formError}
+                </div>
+              )}
+
+              <div className="space-y-6 relative z-10">
+                <div>
+                  <label htmlFor="nom" className="text-sm font-medium text-neutral-700 mb-1 block">Nom</label>
+                  <input
+                    required
+                    type="text"
+                    name="nom"
+                    id="nom"
+                    value={formData.nom}
+                    onChange={handleChange}
+                    placeholder="Votre nom"
+                    className="w-full rounded-lg border border-blue-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#188ce4] transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="text-sm font-medium text-neutral-700 mb-1 block">Email</label>
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="votre@email.com"
+                    className="w-full rounded-lg border border-blue-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#188ce4] transition-all"
+                  />
+                </div>
+
+                {/* Nouveau champ téléphone */}
+                <div>
+                  <label htmlFor="telephone" className="text-sm font-medium text-neutral-700 mb-1 block">
+                    Téléphone <span className="text-xs text-neutral-500">(Optionnel)</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="telephone"
+                    id="telephone"
+                    value={formData.telephone}
+                    onChange={handleChange}
+                    placeholder="06 12 34 56 78"
+                    className="w-full rounded-lg border border-blue-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#188ce4] transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="sujet" className="text-sm font-medium text-neutral-700 mb-1 block">Sujet</label>
+                  <select
+                    name="sujet"
+                    id="sujet"
+                    value={formData.sujet}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border border-blue-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#188ce4] transition-all"
                   >
-                    <span>Envoyer un autre message</span>
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#188ce4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    <option value="">Choisissez un sujet</option>
+                    <option value="automatisation">Automatisation</option>
+                    <option value="developpement">Développement d'outils</option>
+                    <option value="site-web">Création de site web</option>
+                    <option value="communication">Communication digitale</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="text-sm font-medium text-neutral-700 mb-1 block">Message</label>
+                  <textarea
+                    required
+                    name="message"
+                    id="message"
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Décrivez votre projet ou votre besoin..."
+                    className="w-full rounded-lg border border-blue-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#188ce4] transition-all"
+                  />
+                </div>
+
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#188ce4] via-[#4fb3ef] to-[#1581cf] animate-border opacity-70 blur-sm"></div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full prismia-button mt-4 relative ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  >
+                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer votre message'}
                   </button>
                 </div>
               </div>
-            </RevealOnScroll>
-          ) : (
-            <RevealOnScroll>
-              <form
-                className="bg-white rounded-xl shadow-soft p-10 border border-blue-100 relative overflow-hidden"
-                onSubmit={handleSubmit}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 to-transparent pointer-events-none" />
-
-                {formError && (
-                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
-                    {formError}
-                  </div>
-                )}
-
-                <div className="space-y-6 relative z-10">
-                  <div>
-                    <label htmlFor="nom" className="text-sm font-medium text-neutral-700 mb-1 block">Nom</label>
-                    <input
-                      required
-                      type="text"
-                      name="nom"
-                      id="nom"
-                      value={formData.nom}
-                      onChange={handleChange}
-                      placeholder="Votre nom"
-                      className="w-full rounded-lg border border-blue-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#188ce4] transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="text-sm font-medium text-neutral-700 mb-1 block">Email</label>
-                    <input
-                      required
-                      type="email"
-                      name="email"
-                      id="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="votre@email.com"
-                      className="w-full rounded-lg border border-blue-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#188ce4] transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="sujet" className="text-sm font-medium text-neutral-700 mb-1 block">Sujet</label>
-                    <select
-                      name="sujet"
-                      id="sujet"
-                      value={formData.sujet}
-                      onChange={handleChange}
-                      className="w-full rounded-lg border border-blue-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#188ce4] transition-all"
-                    >
-                      <option value="">Choisissez un sujet</option>
-                      <option value="automatisation">Automatisation</option>
-                      <option value="developpement">Développement d'outils</option>
-                      <option value="site-web">Création de site web</option>
-                      <option value="communication">Communication digitale</option>
-                      <option value="autre">Autre</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="text-sm font-medium text-neutral-700 mb-1 block">Message</label>
-                    <textarea
-                      required
-                      name="message"
-                      id="message"
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Décrivez votre projet ou votre besoin..."
-                      className="w-full rounded-lg border border-blue-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#188ce4] transition-all"
-                    />
-                  </div>
-
-                  <div className="relative">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#188ce4] via-[#4fb3ef] to-[#1581cf] animate-border opacity-70 blur-sm"></div>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className={`w-full prismia-button mt-4 relative ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                    >
-                      {isSubmitting ? 'Envoi en cours...' : 'Envoyer votre message'}
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </RevealOnScroll>
-          )}
+            </form>
+          </RevealOnScroll>
         </div>
       </section>
 
