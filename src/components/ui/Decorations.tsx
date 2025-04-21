@@ -234,7 +234,13 @@ export const CodeBlock = ({ className = '' }) => {
   );
 };
 
-export const AnimatedGradientBorder = ({ className = '', children }) => {
+export const AnimatedGradientBorder = ({
+  className = '',
+  children
+}: {
+  className?: string;
+  children: React.ReactNode
+}) => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

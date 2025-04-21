@@ -14,8 +14,9 @@ import {
   CodeBlock,
   WaterDropEffect
 } from "@/components/ui/Decorations";
-import PowerBIDashboard from "@/components/ui/PowerBIDashboard";
 import { useState, useEffect } from "react";
+import AnimatedLogo from "@/components/ui/AnimatedLogo";
+import DashboardAnimations from "@/components/ui/DashboardAnimations";
 
 // Animation variants
 const fadeInUp = {
@@ -35,63 +36,6 @@ const staggerChildren = {
       staggerChildren: 0.2
     }
   }
-};
-
-// Composant pour encapsuler le logo animé et éviter les erreurs d'hydratation
-const AnimatedLogo = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return (
-      <div className="flex justify-center mb-6">
-        <div className="w-20 h-20 bg-gray-100 rounded-full"></div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex justify-center mb-6">
-      <Image
-        src="/images/Kyriel_Services_Gemini_-_Logo_seul_-_900px.png"
-        alt="Kyriel Services Logo"
-        width={80}
-        height={80}
-        className="animate-float"
-      />
-    </div>
-  );
-};
-
-// Composant pour encapsuler les animations de dashboard et éviter les erreurs d'hydratation
-const DashboardAnimations = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return (
-      <div className="dashboard-animations min-h-[300px] flex items-center justify-center bg-white/5 rounded-lg">
-        <div className="text-gray-400">Chargement du dashboard...</div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="dashboard-animations" aria-hidden="true">
-      <div className="animation-container">
-        <CodeBlock className="z-10 relative animate-float" />
-      </div>
-      <div className="animation-container">
-        <PowerBIDashboard className="z-10 relative animate-float" />
-      </div>
-    </div>
-  );
 };
 
 // Composant de carte de service accessible

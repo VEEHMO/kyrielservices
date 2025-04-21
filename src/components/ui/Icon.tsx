@@ -44,6 +44,8 @@ export default function Icon({
         return 'animate-spin';
       case 'hover':
         return 'transition-transform duration-300 hover:scale-110';
+      case 'none':
+        return '';
       default:
         return '';
     }
