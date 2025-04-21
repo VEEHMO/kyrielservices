@@ -23,7 +23,7 @@ const contactSchema = new mongoose.Schema({
     required: false,
     // Validation optionnelle pour le format de téléphone français
     validate: {
-      validator: (v) => {
+      validator: function(v) {
         // Cette expression régulière accepte différents formats de numéros de téléphone
         // français avec ou sans espaces, tirets, etc.
         return !v || /^(\+33|0)[1-9]( *[0-9]{2}){4}$/.test(v);
