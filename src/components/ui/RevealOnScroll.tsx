@@ -20,9 +20,17 @@ export default function RevealOnScroll({
   className = '',
 }: RevealProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
+  // S'assurer que nous sommes côté client pour éviter les problèmes d'hydratation
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return; // Ne pas créer d'observer pendant l'hydratation
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -50,7 +58,7 @@ export default function RevealOnScroll({
         observer.unobserve(currentRef);
       }
     };
-  }, [once, threshold]);
+  }, [once, threshold, isClient]);
 
   // Choisir la classe CSS en fonction de la direction
   const getAnimationClass = () => {
@@ -63,11 +71,15 @@ export default function RevealOnScroll({
         return 'reveal-left';
       case 'right':
         return 'reveal-right';
-      case 'none':
       default:
         return 'reveal';
     }
   };
+
+  // Si nous ne sommes pas côté client, retourner un élément sans animation
+  if (!isClient) {
+    return <div className={className}>{children}</div>;
+  }
 
   const animationClass = getAnimationClass();
   const delayStyle = delay ? { transitionDelay: `${delay}ms` } : {};
@@ -77,6 +89,7 @@ export default function RevealOnScroll({
       ref={ref}
       className={`${animationClass} ${isVisible ? 'active' : ''} ${className}`}
       style={delayStyle}
+      suppressHydrationWarning
     >
       {children}
     </div>
