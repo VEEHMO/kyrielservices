@@ -475,13 +475,17 @@ export const PremiumSectionSeparator = ({
   color = "premium", 
   width = "160px",
   className = ""
+}: {
+  color?: 'premium' | 'gold' | 'silver' | 'light' | 'dark';
+  width?: string;
+  className?: string;
 }) => {
-  const gradients = {
-    premium: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+  const gradients: Record<string, string> = {
+    premium: 'linear-gradient(90deg, #2765ec 0%, #1f50d8 100%)',
     gold: 'linear-gradient(90deg, #FFD700 0%, #FFA500 100%)',
     silver: 'linear-gradient(90deg, #E8E8E8 0%, #C0C0C0 100%)',
-    light: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
-    dark: 'linear-gradient(90deg, #1e3a8a 0%, #3730a3 100%)',
+    light: 'linear-gradient(90deg, #4f7df5 0%, #2765ec 100%)',
+    dark: 'linear-gradient(90deg, #1a40c4 0%, #1530a3 100%)',
   };
 
   return (
