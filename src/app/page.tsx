@@ -167,13 +167,17 @@ const ServiceCard = ({
       <div className="mt-4">
         <Link
           href={`/services#${iconName}`}
-          className="text-primary hover:text-primary-700 text-sm font-medium inline-flex items-center group/link focus:outline-none focus:underline"
+          className="btn-metallic-bronze text-sm font-medium inline-flex items-center group/link focus:outline-none focus:underline px-4 py-2 rounded-lg"
           aria-label={`En savoir plus sur ${title}`}
         >
-          En savoir plus
+          <span className="relative z-10">En savoir plus</span>
           <svg className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
+          {/* Mini particules */}
+          <div className="metallic-particles">
+            <div className="metallic-particle gold" style={{ top: '20%', right: '15%', animationDelay: '1s', width: '2px', height: '2px' }}></div>
+          </div>
         </Link>
       </div>
     </div>
