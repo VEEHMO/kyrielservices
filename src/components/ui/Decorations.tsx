@@ -431,8 +431,14 @@ export const MetallicOrb = ({
   color = 'blue',
   x = 50,
   y = 50 
+}: {
+  className?: string;
+  size?: number;
+  color?: 'blue' | 'lightblue' | 'darkblue';
+  x?: number;
+  y?: number;
 }) => {
-  const gradients = {
+  const gradients: Record<string, string> = {
     blue: 'linear-gradient(135deg, #4f7df5 0%, #2765ec 50%, #1f50d8 100%)',
     lightblue: 'linear-gradient(135deg, #93b5ff 0%, #6794ff 50%, #4f7df5 100%)',
     darkblue: 'linear-gradient(135deg, #1a40c4 0%, #1530a3 100%)',
