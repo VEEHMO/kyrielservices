@@ -4,13 +4,15 @@
 @tailwind utilities;
 
 :root {
-  --primary: #2563EB;
+  --primary: #2765ec;
   --primary-foreground: white;
-  --primary-light: #3B82F6;
-  --primary-100: #DBEAFE;
-  --primary-50: #EFF6FF;
-  --primary-700: #1D4ED8;
-  --primary-500: #3B82F6;
+  --primary-light: #4f7df5;
+  --primary-100: #dce6ff;
+  --primary-50: #eff6ff;
+  --primary-700: #1f50d8;
+  --primary-500: #2765ec;
+  --primary-800: #1a40c4;
+  --primary-900: #1530a3;
   --secondary: #13E0DC;
   --secondary-foreground: #1F2937;
   --secondary-600: #08b3b8;
@@ -18,7 +20,7 @@
   --accent-foreground: white;
   --accent-600: #d97706;
   --background-start: #ffffff;
-  --background-end: #f8fafc;
+  --background-end: #f8faff;
   --foreground: #1F2937;
   --muted: #F3F4F6;
   --muted-foreground: #6B7280;
@@ -29,7 +31,19 @@
   --gradient-stop-1: #f3f4f6;
   --gradient-stop-2: #e5e7eb;
 
-  /* Couleurs métalliques luxueuses */
+  /* Couleurs bleu professionnel */
+  --blue-50: #eff6ff;
+  --blue-100: #dce6ff;
+  --blue-200: #bdd1ff;
+  --blue-300: #93b5ff;
+  --blue-400: #6794ff;
+  --blue-500: #4f7df5;
+  --blue-600: #2765ec;
+  --blue-700: #1f50d8;
+  --blue-800: #1a40c4;
+  --blue-900: #1530a3;
+
+  /* Métalliques ajustées pour compléter le bleu */
   --gold: #FFD700;
   --gold-light: #FFF4B8;
   --gold-dark: #B8860B;
@@ -43,26 +57,26 @@
   --platinum-light: #F5F5F5;
   --platinum-dark: #B8B8B0;
 
-  /* Gradients luxueux */
-  --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
-  --gradient-silver: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A8A8A8 100%);
-  --gradient-bronze: linear-gradient(135deg, #E6B366 0%, #CD7F32 50%, #8B4513 100%);
-  --gradient-premium: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-luxury: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-royal: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  /* Gradients professionnels centrés sur le bleu */
+  --gradient-primary: linear-gradient(135deg, #4f7df5 0%, #2765ec 50%, #1f50d8 100%);
+  --gradient-primary-soft: linear-gradient(135deg, #eff6ff 0%, #dce6ff 50%, #bdd1ff 100%);
+  --gradient-blue-premium: linear-gradient(135deg, #2765ec 0%, #1f50d8 100%);
+  --gradient-blue-light: linear-gradient(135deg, #6794ff 0%, #4f7df5 100%);
+  --gradient-blue-deep: linear-gradient(135deg, #1a40c4 0%, #1530a3 100%);
+  --gradient-professional: linear-gradient(135deg, #2765ec 0%, #1f50d8 50%, #1a40c4 100%);
 
-  /* Effets visuels avancés */
-  --glass-bg: rgba(255, 255, 255, 0.15);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.08);
-  --shadow-medium: 0 16px 48px rgba(0, 0, 0, 0.12);
-  --shadow-strong: 0 24px 64px rgba(0, 0, 0, 0.16);
-  --shadow-glow: 0 0 32px rgba(37, 99, 235, 0.3);
-  --shadow-gold-glow: 0 0 32px rgba(255, 215, 0, 0.4);
+  /* Effets visuels professionnels */
+  --glass-bg: rgba(39, 101, 236, 0.08);
+  --glass-border: rgba(39, 101, 236, 0.15);
+  --shadow-soft: 0 8px 32px rgba(39, 101, 236, 0.12);
+  --shadow-medium: 0 16px 48px rgba(39, 101, 236, 0.16);
+  --shadow-strong: 0 24px 64px rgba(39, 101, 236, 0.20);
+  --shadow-glow: 0 0 32px rgba(39, 101, 236, 0.4);
+  --shadow-blue-glow: 0 0 40px rgba(39, 101, 236, 0.5);
 
-  /* Textures et patterns */
-  --texture-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-  --texture-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.3' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  /* Textures professionnelles */
+  --texture-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  --texture-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.3' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
 
   /* Module d'espacement de 8px */
   --spacing-0: 0;
