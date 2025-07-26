@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${montserrat.variable}`}>
+    <html lang="fr" className={`${montserrat.variable} ${inter.variable}`}>
       <ClientBody>
         <a href="#main-content" className="skip-to-content">Aller au contenu principal</a>
         <HeaderClient />
