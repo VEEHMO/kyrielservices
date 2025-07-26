@@ -522,7 +522,12 @@ export default function HomePage() {
 
       {/* Transition fluide sans barre de séparation */}
 
-      {/* Solutions Section - Déplacée après Services */}
+      {/* Portfolio Section Premium - Nouvelle section avec previews interactifs */}
+      <PortfolioSection />
+
+      {/* Transition fluide sans barre de séparation */}
+
+      {/* Solutions Section - Déplacée après Portfolio */}
       <section className="section relative glass-panel-premium" aria-labelledby="solutions-heading">
         <div className="container-custom">
           <LuxuryWaterDropEffect className="opacity-40" aria-hidden="true" />
