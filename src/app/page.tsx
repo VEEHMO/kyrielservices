@@ -23,6 +23,7 @@ import {
   LightWave,
   ScrollReveal
 } from "@/components/ui/AdvancedAnimations";
+import { PortfolioSection } from "@/components/ui/PortfolioSection";
 
 // Animation variants
 const fadeInUp = {
