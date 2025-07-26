@@ -544,6 +544,162 @@ body::before {
   transform: scale(1);
 }
 
+/* ===========================================
+   ÉTAPE 4: PORTFOLIO SECTION PREMIUM STYLES
+   =========================================== */
+
+.portfolio-section {
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-grid {
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-grid {
+    gap: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-grid {
+    gap: 3rem;
+  }
+}
+
+.portfolio-project {
+  height: 100%;
+  min-height: 420px;
+}
+
+.portfolio-card {
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(39, 101, 236, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-category {
+  z-index: 2;
+}
+
+.portfolio-preview {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-content {
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio-technologies {
+  margin-bottom: 1rem;
+}
+
+.portfolio-technologies span {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(39, 101, 236, 0.2);
+}
+
+.portfolio-technologies span:hover {
+  background: rgba(39, 101, 236, 0.15);
+  border-color: rgba(39, 101, 236, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Filtres du portfolio */
+.portfolio-filters {
+  margin-bottom: 4rem;
+}
+
+.filter-button {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-button:not(.btn-metallic-gold):hover {
+  background: rgba(39, 101, 236, 0.1);
+  border-color: rgba(39, 101, 236, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Animation de transition entre filtres */
+.portfolio-grid > * {
+  transition: all 0.4s ease-out;
+}
+
+/* Effet de brillance sur les cartes au hover */
+.portfolio-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.portfolio-card:hover::before {
+  left: 100%;
+}
+
+/* Animations de preview des projets */
+.preview-icon {
+  text-shadow: 0 0 20px currentColor;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Responsive design pour portfolio */
+@media (max-width: 768px) {
+  .portfolio-project {
+    min-height: 380px;
+  }
+  
+  .portfolio-filters {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .filter-button {
+    min-width: 140px;
+    text-align: center;
+  }
+}
+
+/* Effet de glow dynamique pour les projets actifs */
+.portfolio-project.active {
+  z-index: 10;
+}
+
+.portfolio-project.active .portfolio-card {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 0 30px rgba(39, 101, 236, 0.2);
+}
+
 /* Animation de faisceau lumineux tournant */
 @keyframes rotating-beam {
   0% { 
