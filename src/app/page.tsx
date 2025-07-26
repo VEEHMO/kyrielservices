@@ -319,18 +319,29 @@ export default function HomePage() {
             >
               <Link
                 href="/services"
-                className="btn btn-primary hover-lift"
+                className="btn btn-metallic-gold hover-lift"
               >
                 <span className="relative z-10">Découvrir l'Excellence</span>
+                {/* Particules métalliques décoratives */}
+                <div className="metallic-particles">
+                  <div className="metallic-particle gold" style={{ top: '10%', left: '15%', animationDelay: '0s' }}></div>
+                  <div className="metallic-particle gold" style={{ top: '60%', right: '10%', animationDelay: '2s' }}></div>
+                  <div className="metallic-particle gold" style={{ top: '30%', left: '70%', animationDelay: '4s' }}></div>
+                </div>
               </Link>
               <Link
                 href="/contact"
-                className="btn btn-outline group hover-glow"
+                className="btn btn-metallic-silver group hover-glow"
               >
-                Commencer votre Transformation
+                <span className="relative z-10">Commencer votre Transformation</span>
                 <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
+                {/* Particules métalliques décoratives */}
+                <div className="metallic-particles">
+                  <div className="metallic-particle silver" style={{ top: '20%', left: '20%', animationDelay: '1s' }}></div>
+                  <div className="metallic-particle silver" style={{ top: '70%', right: '15%', animationDelay: '3s' }}></div>
+                </div>
               </Link>
             </motion.div>
           </motion.div>
