@@ -100,16 +100,16 @@ const ServiceCard = ({
 export default function HomePage() {
   return (
     <div className="relative overflow-hidden">
-      {/* Éléments décoratifs luxueux pour l'ensemble de la page */}
+      {/* Éléments décoratifs professionnels pour l'ensemble de la page */}
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
-        <PremiumGrid className="opacity-8" />
-        <MetallicOrb size={400} color="gold" x={85} y={15} />
-        <MetallicOrb size={300} color="silver" x={10} y={70} />
-        <MetallicOrb size={250} color="bronze" x={75} y={85} />
+        <PremiumGrid className="opacity-6" />
+        <MetallicOrb size={450} color="blue" x={88} y={12} />
+        <MetallicOrb size={350} color="lightblue" x={8} y={75} />
+        <MetallicOrb size={280} color="darkblue" x={78} y={88} />
       </div>
 
-      <div className="gradient-blob blob-1 gold" aria-hidden="true" />
-      <div className="gradient-blob blob-2 silver" aria-hidden="true" />
+      <div className="gradient-blob blob-1" aria-hidden="true" />
+      <div className="gradient-blob blob-2" aria-hidden="true" />
       <div className="gradient-blob blob-3" aria-hidden="true" />
 
       {/* Hero Section */}
