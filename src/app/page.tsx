@@ -15,6 +15,14 @@ import {
   LuxuryWaterDropEffect,
   MetallicOrb
 } from "@/components/ui/Decorations";
+import {
+  ParallaxElement,
+  MagneticReveal,
+  FloatingOrbs,
+  MorphingGlow,
+  LightWave,
+  ScrollReveal
+} from "@/components/ui/AdvancedAnimations";
 
 // Animation variants
 const fadeInUp = {
