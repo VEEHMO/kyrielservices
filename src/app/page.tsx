@@ -282,11 +282,24 @@ export default function HomePage() {
 
   return (
     <div className="relative overflow-hidden">
-      {/* Éléments décoratifs professionnels pour l'ensemble de la page */}
+      {/* Orbes flottantes améliorées */}
+      <FloatingOrbs count={8} />
+      
+      {/* Éléments décoratifs professionnels pour l'ensemble de la page avec parallaxe */}
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
-        <MetallicOrb size={450} color="blue" x={88} y={12} />
-        <MetallicOrb size={350} color="lightblue" x={8} y={75} />
-        <MetallicOrb size={280} color="darkblue" x={78} y={88} />
+        <ParallaxElement speed={0.3}>
+          <MetallicOrb size={450} color="blue" x={88} y={12} />
+        </ParallaxElement>
+        <ParallaxElement speed={0.6}>
+          <MetallicOrb size={350} color="lightblue" x={8} y={75} />
+        </ParallaxElement>
+        <ParallaxElement speed={0.4}>
+          <MetallicOrb size={280} color="darkblue" x={78} y={88} />
+        </ParallaxElement>
+        
+        {/* Morphing glow elements */}
+        <MorphingGlow className="top-20 left-10" size={150} />
+        <MorphingGlow className="bottom-40 right-20" size={200} />
       </div>
 
       <div className="gradient-blob blob-1" aria-hidden="true" />
