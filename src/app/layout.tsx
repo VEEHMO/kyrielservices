@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import ClientBody from "./ClientBody";
 import Footer from "@/components/ui/Footer";
@@ -10,6 +10,12 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-montserrat",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "800"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
