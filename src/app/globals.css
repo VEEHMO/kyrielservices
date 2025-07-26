@@ -192,14 +192,52 @@ body::before {
   }
 }
 
-/* Animation de pulsation métallique */
-@keyframes metallic-pulse {
-  0%, 100% { 
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.1);
+/* Animation de faisceau lumineux tournant */
+@keyframes rotating-beam {
+  0% { 
+    transform: rotate(0deg) translateX(-50%);
+    opacity: 0;
   }
   50% { 
-    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), inset 0 0 30px rgba(255, 215, 0, 0.2);
+    opacity: 1;
   }
+  100% { 
+    transform: rotate(360deg) translateX(-50%);
+    opacity: 0;
+  }
+}
+
+.btn-beam {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-beam::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent,
+    transparent
+  );
+  animation: rotating-beam 3s linear infinite;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.btn-beam span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-beam:hover::after {
+  animation-duration: 1.5s;
 }
 
 /* Animation de shimmer */
