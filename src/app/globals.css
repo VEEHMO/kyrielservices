@@ -753,12 +753,181 @@ body::before {
     z-index: -1;
   }
 
-  .btn-accent {
-    @apply py-4 px-8 text-white font-bold;
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-    box-shadow: 
-      0 8px 24px rgba(255, 215, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  /* Classes de boutons métalliques premium */
+  
+  .btn-metallic-gold {
+    @apply py-4 px-8 text-white font-bold relative overflow-hidden;
+    background: var(--gradient-gold-luxury);
+    background-size: 300% 300%;
+    box-shadow: var(--shadow-gold-luxury);
+    animation: luxury-gold-shimmer 4s ease-in-out infinite;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  
+  .btn-metallic-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+  }
+  
+  .btn-metallic-gold:hover::before {
+    left: 100%;
+  }
+  
+  .btn-metallic-gold:hover {
+    transform: translateY(-4px) scale(1.02);
+    animation-duration: 2s;
+    box-shadow: 0 16px 48px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.4);
+  }
+  
+  .btn-metallic-gold span {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn-metallic-silver {
+    @apply py-4 px-8 font-bold relative overflow-hidden;
+    background: var(--gradient-silver-luxury);
+    background-size: 200% 200%;
+    color: #374151;
+    box-shadow: var(--shadow-silver-luxury);
+    animation: luxury-silver-glow 3s ease-in-out infinite;
+    border: 2px solid rgba(192, 192, 192, 0.3);
+  }
+  
+  .btn-metallic-silver::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+  }
+  
+  .btn-metallic-silver:hover::before {
+    left: 100%;
+  }
+  
+  .btn-metallic-silver:hover {
+    transform: translateY(-3px) scale(1.01);
+    animation-duration: 1.5s;
+    color: #1f2937;
+  }
+  
+  .btn-metallic-silver span {
+    position: relative;
+    z-index: 2;
+    font-weight: 700;
+  }
+  
+  .btn-metallic-platinum {
+    @apply py-4 px-8 text-gray-700 font-bold relative overflow-hidden;
+    background: var(--gradient-platinum-luxury);
+    background-size: 200% 200%;
+    box-shadow: var(--shadow-platinum-luxury);
+    animation: luxury-platinum-pulse 5s ease-in-out infinite;
+    border: 2px solid rgba(229, 228, 226, 0.4);
+  }
+  
+  .btn-metallic-platinum::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      transparent,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent,
+      transparent
+    );
+    animation: rotating-beam 6s linear infinite;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  .btn-metallic-platinum span {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .btn-metallic-platinum:hover {
+    transform: translateY(-3px);
+    animation-duration: 2.5s;
+  }
+  
+  .btn-metallic-bronze {
+    @apply py-4 px-8 text-white font-bold relative overflow-hidden;
+    background: var(--gradient-bronze-luxury);
+    background-size: 250% 250%;
+    box-shadow: var(--shadow-bronze-luxury);
+    animation: luxury-bronze-wave 4.5s ease-in-out infinite;
+    border: 2px solid rgba(205, 127, 50, 0.3);
+  }
+  
+  .btn-metallic-bronze::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    z-index: 1;
+  }
+  
+  .btn-metallic-bronze span {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+  
+  .btn-metallic-bronze:hover {
+    transform: translateY(-4px) scale(1.02);
+    animation-duration: 2.2s;
+  }
+  
+  /* Particules métalliques décoratives */
+  .metallic-particles {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .metallic-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: metallic-particles-float 8s ease-in-out infinite;
+  }
+  
+  .metallic-particle.gold {
+    background: radial-gradient(circle, #FFD700, #FFED4A);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  }
+  
+  .metallic-particle.silver {
+    background: radial-gradient(circle, #C0C0C0, #E5E5E5);
+    box-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
+  }
+  
+  .metallic-particle.platinum {
+    background: radial-gradient(circle, #E5E4E2, #F8F8FF);
+    box-shadow: 0 0 12px rgba(229, 228, 226, 0.7);
   }
 
   .btn-sm {
