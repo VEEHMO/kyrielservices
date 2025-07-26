@@ -361,41 +361,164 @@ export const AnimatedGradientBorder = ({ className = '', children }) => {
 //   animation: border-rotate 6s linear infinite;
 // }
 
-export const WaterDropEffect = ({ className = '' }) => {
+export const LuxuryWaterDropEffect = ({ className = '' }) => {
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
       <svg width="0" height="0">
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-        </filter>
+        <defs>
+          <filter id="luxuryGoo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" result="goo" />
+            <feDropShadow dx="0" dy="4" stdDeviation="3" floodColor="rgba(102, 126, 234, 0.3)" result="shadow" />
+          </filter>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFD700" />
+            <stop offset="50%" stopColor="#FFA500" />
+            <stop offset="100%" stopColor="#FF8C00" />
+          </linearGradient>
+          <linearGradient id="silverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#E8E8E8" />
+            <stop offset="50%" stopColor="#C0C0C0" />
+            <stop offset="100%" stopColor="#A8A8A8" />
+          </linearGradient>
+        </defs>
       </svg>
 
-      <div className="absolute inset-0" style={{ filter: 'url(#goo)' }}>
-        {Array.from({ length: 8 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-[#188ce4] rounded-full opacity-30"
-            style={{
-              width: `${Math.random() * 60 + 20}px`,
-              height: `${Math.random() * 60 + 20}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              scale: [1, 1.2, 1],
-              x: [0, Math.random() * 60 - 30, 0],
-              y: [0, Math.random() * 60 - 30, 0],
-            }}
-            transition={{
-              duration: 10 + Math.random() * 5,
-              ease: "easeInOut",
-              repeat: Number.POSITIVE_INFINITY,
-              delay: i * 0.5,
-            }}
-          />
-        ))}
+      <div className="absolute inset-0" style={{ filter: 'url(#luxuryGoo)' }}>
+        {Array.from({ length: 12 }).map((_, i) => {
+          const colors = ['#667eea', 'url(#goldGradient)', 'url(#silverGradient)', '#f093fb'];
+          const size = Math.random() * 80 + 30;
+          const isSpecial = i < 3;
+          
+          return (
+            <motion.div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: `${size}px`,
+                height: `${size * 0.6}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                background: isSpecial ? colors[i + 1] : colors[0],
+                opacity: isSpecial ? 0.4 : 0.25,
+              }}
+              animate={{
+                scale: [1, 1.3, 0.8, 1],
+                x: [0, Math.random() * 100 - 50, Math.random() * 80 - 40, 0],
+                y: [0, Math.random() * 100 - 50, Math.random() * 80 - 40, 0],
+                rotate: [0, 180, 360],
+              }}
+              transition={{
+                duration: 12 + Math.random() * 8,
+                ease: "easeInOut",
+                repeat: Number.POSITIVE_INFINITY,
+                delay: i * 0.8,
+              }}
+            />
+          );
+        })}
       </div>
+    </div>
+  );
+};
+
+export const WaterDropEffect = LuxuryWaterDropEffect; // Alias pour compatibilité
+
+// Nouveaux composants luxueux
+export const MetallicOrb = ({ 
+  className = '', 
+  size = 200,
+  color = 'gold',
+  x = 50,
+  y = 50 
+}) => {
+  const gradients = {
+    gold: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%)',
+    silver: 'linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A8A8A8 100%)',
+    bronze: 'linear-gradient(135deg, #E6B366 0%, #CD7F32 50%, #8B4513 100%)',
+  };
+
+  return (
+    <motion.div
+      className={`absolute rounded-full ${className}`}
+      style={{
+        width: size,
+        height: size,
+        left: `${x}%`,
+        top: `${y}%`,
+        background: gradients[color] || gradients.gold,
+        transform: 'translate(-50%, -50%)',
+        filter: 'blur(40px)',
+        opacity: 0.15,
+      }}
+      animate={{
+        scale: [1, 1.2, 1],
+        opacity: [0.1, 0.2, 0.1],
+        rotate: [0, 180, 360],
+      }}
+      transition={{
+        duration: 20,
+        ease: "easeInOut",
+        repeat: Number.POSITIVE_INFINITY,
+      }}
+    />
+  );
+};
+
+export const PremiumSectionSeparator = ({ 
+  color = "premium", 
+  width = "160px",
+  className = ""
+}) => {
+  const gradients = {
+    premium: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+    gold: 'linear-gradient(90deg, #FFD700 0%, #FFA500 100%)',
+    silver: 'linear-gradient(90deg, #E8E8E8 0%, #C0C0C0 100%)',
+    light: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+    dark: 'linear-gradient(90deg, #1e3a8a 0%, #3730a3 100%)',
+  };
+
+  return (
+    <div className={`flex justify-center my-16 ${className}`}>
+      <motion.div
+        style={{ maxWidth: width }}
+        className="relative"
+        initial={{ width: 0, opacity: 0 }}
+        whileInView={{ width: '100%', opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <div
+          className="h-1 rounded-full relative overflow-hidden"
+          style={{ background: gradients[color] }}
+        >
+          {/* Effet de shimmer */}
+          <motion.div
+            className="absolute inset-0 opacity-60"
+            style={{
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+            }}
+            animate={{ x: ['-100%', '100%'] }}
+            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, repeatDelay: 3 }}
+          />
+        </div>
+        
+        {/* Points décoratifs */}
+        <motion.div
+          className="absolute left-0 top-1/2 w-3 h-3 rounded-full -translate-y-1/2 -translate-x-1/2"
+          style={{ background: gradients[color] }}
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          transition={{ delay: 0.8, duration: 0.4 }}
+        />
+        <motion.div
+          className="absolute right-0 top-1/2 w-3 h-3 rounded-full -translate-y-1/2 translate-x-1/2"
+          style={{ background: gradients[color] }}
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          transition={{ delay: 0.8, duration: 0.4 }}
+        />
+      </motion.div>
     </div>
   );
 };
