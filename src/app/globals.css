@@ -269,24 +269,279 @@ body::before {
   }
 }
 
-/* Effet de particules métalliques flottantes - CALMÉ */
-@keyframes metallic-particles-float {
+/* ===========================================
+   ÉTAPE 2: ANIMATIONS ET MICRO-INTERACTIONS AVANCÉES  
+   =========================================== */
+
+/* Effets de parallaxe subtils */
+@keyframes parallax-float {
   0%, 100% { 
-    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
-    opacity: 0.2;
+    transform: translateY(0) translateX(0) rotateZ(0deg);
   }
   25% { 
-    transform: translateY(-8px) translateX(4px) scale(1.05) rotate(45deg);
-    opacity: 0.6;
+    transform: translateY(-15px) translateX(5px) rotateZ(1deg);
   }
   50% { 
-    transform: translateY(-4px) translateX(-2px) scale(0.95) rotate(90deg);
-    opacity: 0.4;
+    transform: translateY(-8px) translateX(-3px) rotateZ(-0.5deg);
   }
   75% { 
-    transform: translateY(-12px) translateX(-4px) scale(1.02) rotate(135deg);
-    opacity: 0.5;
+    transform: translateY(-20px) translateX(8px) rotateZ(1.5deg);
   }
+}
+
+/* Animation de révélation avancée avec effet magnétique */
+@keyframes magnetic-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(5px);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.02);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Animation de pulsation lumineuse sophistiquée */
+@keyframes luxury-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px rgba(39, 101, 236, 0.15),
+      0 0 0 rgba(39, 101, 236, 0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 
+      0 12px 40px rgba(39, 101, 236, 0.25),
+      0 0 20px rgba(39, 101, 236, 0.2);
+    transform: scale(1.01);
+  }
+}
+
+/* Animation de vagues de lumière */
+@keyframes light-wave {
+  0% {
+    background-position: -200% center;
+    opacity: 0.3;
+  }
+  50% {
+    background-position: 200% center;
+    opacity: 0.8;
+  }
+  100% {
+    background-position: 600% center;
+    opacity: 0.3;
+  }
+}
+
+/* Animation de rotation orbite */
+@keyframes orbit-rotation {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+/* Animation de morphing fluide */
+@keyframes morphing-glow {
+  0%, 100% {
+    border-radius: 50% 40% 30% 60%;
+    background: radial-gradient(circle at 30% 40%, rgba(39, 101, 236, 0.1), transparent 70%);
+  }
+  25% {
+    border-radius: 60% 30% 70% 40%;
+    background: radial-gradient(circle at 60% 30%, rgba(79, 125, 245, 0.12), transparent 70%);
+  }
+  50% {
+    border-radius: 30% 60% 40% 70%;
+    background: radial-gradient(circle at 70% 60%, rgba(31, 80, 216, 0.08), transparent 70%);
+  }
+  75% {
+    border-radius: 70% 40% 60% 30%;
+    background: radial-gradient(circle at 40% 70%, rgba(103, 148, 255, 0.15), transparent 70%);
+  }
+}
+
+/* Classes avancées pour micro-interactions */
+
+.parallax-element {
+  animation: parallax-float 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+.parallax-element.slow {
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+
+.parallax-element.fast {
+  animation-duration: 15s;
+  animation-delay: -2s;
+}
+
+.magnetic-reveal {
+  animation: magnetic-reveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.magnetic-reveal.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.magnetic-reveal.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.magnetic-reveal.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.luxury-pulse {
+  animation: luxury-pulse 4s ease-in-out infinite;
+}
+
+.light-wave-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.light-wave-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(39, 101, 236, 0.1) 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: light-wave 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.morphing-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  animation: morphing-glow 12s ease-in-out infinite;
+  filter: blur(40px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Effets de hover avancés avec micro-interactions */
+.advanced-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.advanced-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.advanced-hover:hover::before {
+  left: 100%;
+}
+
+.advanced-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
+/* Orbes flottantes améliorées */
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(39, 101, 236, 0.1));
+  animation: orbit-rotation 30s linear infinite;
+  pointer-events: none;
+  filter: blur(1px);
+  opacity: 0.7;
+}
+
+.floating-orb.orb-1 {
+  width: 8px;
+  height: 8px;
+  animation-duration: 25s;
+  animation-delay: 0s;
+}
+
+.floating-orb.orb-2 {
+  width: 12px;
+  height: 12px;
+  animation-duration: 35s;
+  animation-delay: -10s;
+}
+
+.floating-orb.orb-3 {
+  width: 6px;
+  height: 6px;
+  animation-duration: 20s;
+  animation-delay: -5s;
+}
+
+/* Scroll-triggered enhanced animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal.from-left {
+  transform: translateX(-30px);
+}
+
+.scroll-reveal.from-left.revealed {
+  transform: translateX(0);
+}
+
+.scroll-reveal.from-right {
+  transform: translateX(30px);
+}
+
+.scroll-reveal.from-right.revealed {
+  transform: translateX(0);
+}
+
+.scroll-reveal.zoom-in {
+  transform: scale(0.95);
+}
+
+.scroll-reveal.zoom-in.revealed {
+  transform: scale(1);
 }
 
 /* Animation de faisceau lumineux tournant */
