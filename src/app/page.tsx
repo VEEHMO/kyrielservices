@@ -514,15 +514,22 @@ export default function HomePage() {
               <div className="inline-block">
                 <Link
                   href="/contact"
-                  className="btn btn-accent btn-lg btn-beam group hover-lift excellence-button"
+                  className="btn btn-metallic-platinum btn-lg btn-beam group hover-lift excellence-button"
                   aria-label="Contactez-nous pour démarrer votre transformation"
                 >
-                  <span className="flex items-center text-lg font-bold">
+                  <span className="flex items-center text-lg font-bold relative z-10">
                     Démarrer votre Transformation
                     <svg className="w-6 h-6 ml-3 transform group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
+                  {/* Particules métalliques premium */}
+                  <div className="metallic-particles">
+                    <div className="metallic-particle platinum" style={{ top: '15%', left: '10%', animationDelay: '0s' }}></div>
+                    <div className="metallic-particle platinum" style={{ top: '45%', right: '20%', animationDelay: '2.5s' }}></div>
+                    <div className="metallic-particle platinum" style={{ top: '75%', left: '60%', animationDelay: '5s' }}></div>
+                    <div className="metallic-particle platinum" style={{ top: '25%', left: '80%', animationDelay: '7.5s' }}></div>
+                  </div>
                 </Link>
               </div>
             </RevealOnScroll>
