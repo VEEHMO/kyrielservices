@@ -274,28 +274,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionSeparator color="dark" width="120px" />
+      <SectionSeparator color="silver" width="140px" />
 
-      {/* Call to Action */}
-      <section className="section-sm bg-primary-50 relative overflow-hidden" aria-labelledby="cta-heading">
+      {/* Call to Action Premium */}
+      <section className="section glass-panel-premium relative overflow-hidden" aria-labelledby="cta-heading">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="max-w-5xl mx-auto text-center relative z-10">
             <RevealOnScroll>
-              <h2 id="cta-heading" className="text-3xl font-bold mb-4 text-gray-700">Libérez votre potentiel</h2>
+              <h2 id="cta-heading" className="text-4xl md:text-5xl font-bold mb-6 gradient-heading-gold">
+                Libérez Votre Excellence
+              </h2>
             </RevealOnScroll>
             <RevealOnScroll delay={100}>
-              <p className="text-lg text-gray-500 mb-8">Nous accompagnons les entrepreneurs souhaitant gagner en efficacité grâce à l'informatique.</p>
+              <p className="text-2xl text-gray-600 mb-12 leading-relaxed max-w-4xl mx-auto">
+                Rejoignez l'élite des entrepreneurs visionnaires qui transforment leurs ambitions en succès extraordinaires grâce à notre expertise technologique de pointe.
+              </p>
             </RevealOnScroll>
             <RevealOnScroll delay={200}>
               <div className="inline-block">
                 <Link
                   href="/contact"
-                  className="btn btn-primary group"
-                  aria-label="Contactez-nous pour discuter de vos projets"
+                  className="btn btn-accent btn-lg group hover-lift hover-gold-glow"
+                  aria-label="Contactez-nous pour démarrer votre transformation"
                 >
-                  <span className="flex items-center">
-                    Parlons de vos projets
-                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <span className="flex items-center text-lg font-bold">
+                    Démarrer votre Transformation
+                    <svg className="w-6 h-6 ml-3 transform group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
@@ -304,9 +308,16 @@ export default function HomePage() {
             </RevealOnScroll>
           </div>
 
-          {/* Formes décoratives */}
-          <div className="absolute top-0 left-0 w-full h-24 bg-primary-100 opacity-30 transform -skew-y-2" aria-hidden="true" />
-          <div className="absolute bottom-0 right-0 w-full h-24 bg-primary-100 opacity-30 transform skew-y-2" aria-hidden="true" />
+          {/* Effets décoratifs métalliques sophistiqués */}
+          <div className="absolute top-0 left-0 w-full h-32 opacity-20 transform -skew-y-1" 
+               style={{ background: 'linear-gradient(135deg, #FFD700, #FFA500)' }} 
+               aria-hidden="true" />
+          <div className="absolute bottom-0 right-0 w-full h-32 opacity-15 transform skew-y-1" 
+               style={{ background: 'linear-gradient(135deg, #E8E8E8, #C0C0C0)' }} 
+               aria-hidden="true" />
+          
+          {/* Particules dorées */}
+          <LuxuryParticles count={15} className="opacity-40" />
         </div>
       </section>
     </div>
