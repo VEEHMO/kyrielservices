@@ -307,8 +307,8 @@ const PowerBIDashboard = ({ className = '' }: PowerBIDashboardProps) => {
     if (!isClient) return;
 
     const interval = setInterval(() => {
-      setCurrentAnimation((prev) => (prev + 1) % 3); // Utiliser la valeur fixe 3 au lieu de dashboards.length
-    }, 5000); // Changer toutes les 5 secondes
+      setCurrentAnimation((prev) => (prev + 1) % 3); // Alterner entre 3 dashboards
+    }, 3000); // Changer toutes les 3 secondes
 
     return () => clearInterval(interval);
   }, [isClient]);
