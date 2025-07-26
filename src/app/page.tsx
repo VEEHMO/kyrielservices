@@ -274,14 +274,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionSeparator color="silver" width="140px" />
+      <SectionSeparator color="premium" width="140px" />
 
       {/* Call to Action Premium */}
       <section className="section glass-panel-premium relative overflow-hidden" aria-labelledby="cta-heading">
         <div className="container-custom">
           <div className="max-w-5xl mx-auto text-center relative z-10">
             <RevealOnScroll>
-              <h2 id="cta-heading" className="text-4xl md:text-5xl font-bold mb-6 gradient-heading-gold">
+              <h2 id="cta-heading" className="text-4xl md:text-5xl font-bold mb-6 gradient-heading-blue">
                 Libérez Votre Excellence
               </h2>
             </RevealOnScroll>
@@ -294,7 +294,7 @@ export default function HomePage() {
               <div className="inline-block">
                 <Link
                   href="/contact"
-                  className="btn btn-accent btn-lg group hover-lift hover-gold-glow"
+                  className="btn btn-accent btn-lg btn-beam group hover-lift"
                   aria-label="Contactez-nous pour démarrer votre transformation"
                 >
                   <span className="flex items-center text-lg font-bold">
@@ -308,16 +308,16 @@ export default function HomePage() {
             </RevealOnScroll>
           </div>
 
-          {/* Effets décoratifs métalliques sophistiqués */}
-          <div className="absolute top-0 left-0 w-full h-32 opacity-20 transform -skew-y-1" 
-               style={{ background: 'linear-gradient(135deg, #FFD700, #FFA500)' }} 
+          {/* Effets décoratifs professionnels sophistiqués */}
+          <div className="absolute top-0 left-0 w-full h-32 opacity-10 transform -skew-y-1" 
+               style={{ background: 'linear-gradient(135deg, #4f7df5, #2765ec)' }} 
                aria-hidden="true" />
-          <div className="absolute bottom-0 right-0 w-full h-32 opacity-15 transform skew-y-1" 
-               style={{ background: 'linear-gradient(135deg, #E8E8E8, #C0C0C0)' }} 
+          <div className="absolute bottom-0 right-0 w-full h-32 opacity-08 transform skew-y-1" 
+               style={{ background: 'linear-gradient(135deg, #93b5ff, #6794ff)' }} 
                aria-hidden="true" />
           
-          {/* Particules dorées */}
-          <LuxuryParticles count={15} className="opacity-40" />
+          {/* Particules bleues */}
+          <LuxuryParticles count={12} className="opacity-30" />
         </div>
       </section>
     </div>
