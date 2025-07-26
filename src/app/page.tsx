@@ -214,21 +214,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionSeparator color="gold" width="160px" />
+      <SectionSeparator color="premium" width="160px" />
 
       {/* Services Premium */}
-      <section className="section bg-luxury-pattern relative overflow-hidden" aria-labelledby="services-heading">
+      <section className="section bg-professional-pattern relative overflow-hidden" aria-labelledby="services-heading">
         <div className="container-custom">
-          {/* Points lumineux décoratifs premium */}
+          {/* Points lumineux décoratifs professionnels */}
           <div aria-hidden="true">
-            <GlowingDot x={8} y={25} size={12} color="#FFD700" />
-            <GlowingDot x={92} y={55} size={16} delay={1} color="#C0C0C0" />
-            <GlowingDot x={12} y={85} size={14} delay={2} color="#CD7F32" />
-            <GlowingDot x={88} y={15} size={18} delay={0.5} color="#667eea" />
+            <GlowingDot x={8} y={25} size={12} color="#2765ec" />
+            <GlowingDot x={92} y={55} size={16} delay={1} color="#4f7df5" />
+            <GlowingDot x={12} y={85} size={14} delay={2} color="#1f50d8" />
+            <GlowingDot x={88} y={15} size={18} delay={0.5} color="#6794ff" />
           </div>
 
           <RevealOnScroll>
-            <h2 id="services-heading" className="section-title gradient-heading-luxury">
+            <h2 id="services-heading" className="section-title gradient-heading-professional">
               Services d'Excellence
             </h2>
           </RevealOnScroll>
