@@ -434,31 +434,31 @@ body::before {
 @layer components {
   .gradient-heading {
     @apply text-transparent bg-clip-text;
-    background-image: var(--gradient-premium);
-    filter: drop-shadow(0 2px 8px rgba(102, 126, 234, 0.3));
+    background-image: var(--gradient-primary);
+    filter: drop-shadow(0 2px 8px rgba(39, 101, 236, 0.3));
     position: relative;
   }
 
-  .gradient-heading-gold {
+  .gradient-heading-blue {
     @apply text-transparent bg-clip-text;
-    background-image: var(--gradient-gold);
-    filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.4));
+    background-image: var(--gradient-blue-premium);
+    filter: drop-shadow(0 2px 8px rgba(31, 80, 216, 0.4));
   }
 
-  .gradient-heading-luxury {
+  .gradient-heading-professional {
     @apply text-transparent bg-clip-text;
-    background-image: var(--gradient-luxury);
-    filter: drop-shadow(0 2px 8px rgba(245, 87, 108, 0.3));
+    background-image: var(--gradient-professional);
+    filter: drop-shadow(0 2px 8px rgba(39, 101, 236, 0.35));
   }
 
   .service-card {
-    @apply rounded-xl border border-gray-100 bg-white p-8 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full relative overflow-hidden;
+    @apply rounded-xl border border-blue-100 bg-white p-8 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full relative overflow-hidden;
     background: 
-      linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(239, 246, 255, 0.9) 100%),
       var(--texture-grain);
     backdrop-filter: blur(10px);
     box-shadow: 
-      0 4px 20px rgba(0, 0, 0, 0.08),
+      0 4px 20px rgba(39, 101, 236, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
 
@@ -468,8 +468,8 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--gradient-premium);
+    height: 3px;
+    background: var(--gradient-primary);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -481,17 +481,17 @@ body::before {
   .service-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.15),
-      0 0 30px rgba(37, 99, 235, 0.1),
+      0 20px 40px rgba(39, 101, 236, 0.15),
+      0 0 30px rgba(39, 101, 236, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
 
   .prismia-button {
     @apply rounded-xl font-semibold transition-all duration-300 px-8 py-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary relative overflow-hidden;
-    background: var(--gradient-premium);
+    background: var(--gradient-primary);
     color: white;
     box-shadow: 
-      0 8px 24px rgba(102, 126, 234, 0.3),
+      0 8px 24px rgba(39, 101, 236, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
@@ -513,13 +513,13 @@ body::before {
   .prismia-button:hover {
     transform: translateY(-2px);
     box-shadow: 
-      0 12px 32px rgba(102, 126, 234, 0.4),
+      0 12px 32px rgba(39, 101, 236, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   .card-icon {
     @apply w-16 h-16 mb-6 relative;
-    filter: drop-shadow(0 4px 8px rgba(37, 99, 235, 0.2));
+    filter: drop-shadow(0 4px 8px rgba(39, 101, 236, 0.2));
   }
 
   .section-title {
@@ -535,7 +535,7 @@ body::before {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: var(--gradient-premium);
+    background: var(--gradient-primary);
     border-radius: 2px;
   }
 
@@ -545,7 +545,7 @@ body::before {
 
   .btn {
     @apply inline-flex items-center justify-center rounded-xl transition-all duration-300 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary relative overflow-hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(39, 101, 236, 0.15);
   }
 
   .btn::before {
@@ -565,32 +565,32 @@ body::before {
 
   .btn-primary {
     @apply py-4 px-8 text-white font-bold;
-    background: var(--gradient-premium);
+    background: var(--gradient-primary);
     box-shadow: 
-      0 8px 24px rgba(102, 126, 234, 0.3),
+      0 8px 24px rgba(39, 101, 236, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 
-      0 12px 32px rgba(102, 126, 234, 0.4),
+      0 12px 32px rgba(39, 101, 236, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   .btn-secondary {
-    @apply py-4 px-8 text-gray-700 font-bold;
-    background: var(--gradient-silver);
+    @apply py-4 px-8 text-blue-700 font-bold;
+    background: var(--gradient-primary-soft);
     box-shadow: 
-      0 8px 24px rgba(192, 192, 192, 0.3),
+      0 8px 24px rgba(39, 101, 236, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
   .btn-outline {
     @apply border-2 py-4 px-8 font-bold relative;
-    border-image: var(--gradient-premium) 1;
+    border-image: var(--gradient-primary) 1;
     color: transparent;
-    background: var(--gradient-premium);
+    background: var(--gradient-primary);
     background-clip: text;
     -webkit-background-clip: text;
   }
@@ -606,7 +606,7 @@ body::before {
 
   .btn-accent {
     @apply py-4 px-8 text-white font-bold;
-    background: var(--gradient-gold);
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
     box-shadow: 
       0 8px 24px rgba(255, 215, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
