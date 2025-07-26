@@ -181,12 +181,12 @@ export default function HomePage() {
       {/* Solutions Section */}
       <section className="section relative glass-panel-premium" aria-labelledby="solutions-heading">
         <div className="container-custom">
-          <LuxuryWaterDropEffect className="opacity-50" aria-hidden="true" />
+          <LuxuryWaterDropEffect className="opacity-40" aria-hidden="true" />
           <RevealOnScroll>
             <div className="max-w-5xl mx-auto">
               <div className="grid-cols-1-2 items-center gap-16">
                 <div className="space-y-8">
-                  <h2 id="solutions-heading" className="text-4xl md:text-5xl font-bold mb-8 gradient-heading-luxury">
+                  <h2 id="solutions-heading" className="text-4xl md:text-5xl font-bold mb-8 gradient-heading-professional">
                     Solutions d'Excellence sur Mesure
                   </h2>
                   <p className="text-xl text-gray-600 mb-10 leading-relaxed">
@@ -203,8 +203,8 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative hidden md:block">
-                  <div className="absolute -z-10 right-0 top-0 w-40 h-40 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-gold-pulse" 
-                       style={{ background: 'linear-gradient(135deg, #FFD700, #FFA500)' }} 
+                  <div className="absolute -z-10 right-0 top-0 w-40 h-40 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-pulse-glow" 
+                       style={{ background: 'linear-gradient(135deg, #4f7df5, #2765ec)' }} 
                        aria-hidden="true" />
                   <DashboardAnimations />
                 </div>
