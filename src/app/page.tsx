@@ -176,32 +176,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionSeparator color="light" width="180px" />
+      <SectionSeparator color="premium" width="200px" />
 
-      {/* Code example section */}
-      <section className="section relative" aria-labelledby="solutions-heading">
+      {/* Solutions Section */}
+      <section className="section relative glass-panel-premium" aria-labelledby="solutions-heading">
         <div className="container-custom">
-          <WaterDropEffect className="opacity-40" aria-hidden="true" />
+          <LuxuryWaterDropEffect className="opacity-50" aria-hidden="true" />
           <RevealOnScroll>
-            <div className="max-w-4xl mx-auto">
-              <div className="grid-cols-1-2 items-center">
-                <div>
-                  <h2 id="solutions-heading" className="text-3xl font-bold mb-6 gradient-heading">Des solutions sur mesure</h2>
-                  <p className="text-gray-600 mb-8">
-                    Notre expertise en développement et en automatisation nous permet de créer des solutions
-                    parfaitement adaptées à vos besoins spécifiques. Nous travaillons en étroite collaboration
-                    avec vous pour comprendre vos objectifs et développer des outils qui simplifient vos flux de travail.
+            <div className="max-w-5xl mx-auto">
+              <div className="grid-cols-1-2 items-center gap-16">
+                <div className="space-y-8">
+                  <h2 id="solutions-heading" className="text-4xl md:text-5xl font-bold mb-8 gradient-heading-luxury">
+                    Solutions d'Excellence sur Mesure
+                  </h2>
+                  <p className="text-xl text-gray-600 mb-10 leading-relaxed">
+                    Notre expertise technique de pointe et notre approche personnalisée nous permettent de créer des solutions 
+                    révolutionnaires parfaitement alignées sur vos ambitions. Nous transformons vos défis en avantages concurrentiels 
+                    grâce à des technologies intelligentes qui redéfinissent l'efficacité opérationnelle.
                   </p>
-                  <div className="flex flex-wrap gap-module-sm mb-module" aria-label="Domaines d'expertise">
-                    <span className="px-3 py-1 bg-primary-50 text-primary rounded-full text-sm">Automatisation</span>
-                    <span className="px-3 py-1 bg-primary-50 text-primary rounded-full text-sm">Développement</span>
-                    <span className="px-3 py-1 bg-primary-50 text-primary rounded-full text-sm">API</span>
-                    <span className="px-3 py-1 bg-primary-50 text-primary rounded-full text-sm">Web</span>
-                    <span className="px-3 py-1 bg-primary-50 text-primary rounded-full text-sm">Data</span>
+                  <div className="flex flex-wrap gap-4 mb-8" aria-label="Domaines d'expertise premium">
+                    <span className="px-6 py-3 glass-panel-premium text-primary rounded-full text-base font-medium hover-glow">Intelligence Artificielle</span>
+                    <span className="px-6 py-3 glass-panel-premium text-primary rounded-full text-base font-medium hover-glow">Automatisation Avancée</span>
+                    <span className="px-6 py-3 glass-panel-premium text-primary rounded-full text-base font-medium hover-glow">Solutions Cloud</span>
+                    <span className="px-6 py-3 glass-panel-premium text-primary rounded-full text-base font-medium hover-glow">Développement Premium</span>
+                    <span className="px-6 py-3 glass-panel-premium text-primary rounded-full text-base font-medium hover-glow">Analytics Prédictifs</span>
                   </div>
                 </div>
                 <div className="relative hidden md:block">
-                  <div className="absolute -z-10 right-0 top-0 w-32 h-32 bg-primary-100 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-pulse-glow" aria-hidden="true" />
+                  <div className="absolute -z-10 right-0 top-0 w-40 h-40 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-gold-pulse" 
+                       style={{ background: 'linear-gradient(135deg, #FFD700, #FFA500)' }} 
+                       aria-hidden="true" />
                   <DashboardAnimations />
                 </div>
               </div>
