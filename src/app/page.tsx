@@ -113,11 +113,11 @@ export default function HomePage() {
       <div className="gradient-blob blob-3" aria-hidden="true" />
 
       {/* Hero Section */}
-      <section className="section-lg bg-luxury-pattern relative overflow-hidden min-h-[calc(60vh)]" aria-labelledby="hero-heading">
+      <section className="section-lg bg-professional-pattern relative overflow-hidden min-h-[calc(60vh)]" aria-labelledby="hero-heading">
         <div className="container-custom">
-          {/* Éléments décoratifs luxueux spécifiques à la section hero */}
-          <LuxuryParticles count={20} className="opacity-60" aria-hidden="true" />
-          <LuxuryGlow className="-top-32 -right-32" width={80} height={80} intensity="high" aria-hidden="true" />
+          {/* Éléments décoratifs professionnels spécifiques à la section hero */}
+          <LuxuryParticles count={18} className="opacity-50" aria-hidden="true" />
+          <LuxuryGlow className="-top-32 -right-32" width={85} height={85} intensity="high" aria-hidden="true" />
 
           <motion.div
             className="max-w-6xl mx-auto text-center relative z-10"
@@ -133,10 +133,10 @@ export default function HomePage() {
             >
               <div className="inline-block relative">
                 <div className="absolute -top-12 -left-12" aria-hidden="true">
-                  <GlowingDot x={0} y={0} size={40} delay={0.5} color="#FFD700" />
+                  <GlowingDot x={0} y={0} size={40} delay={0.5} color="#2765ec" />
                 </div>
               </div>
-              Nous construisons des solutions <span className="gradient-heading-luxury">informatiques</span> au service de votre <span className="gradient-heading-gold">excellence</span>
+              Nous construisons des solutions <span className="gradient-heading-professional">informatiques</span> au service de votre <span className="gradient-heading-blue">excellence</span>
             </motion.h1>
             <motion.p
               className="text-2xl text-gray-500 mb-12 max-w-4xl mx-auto leading-relaxed"
@@ -166,12 +166,12 @@ export default function HomePage() {
             </motion.div>
           </motion.div>
 
-          {/* Cercles décoratifs métalliques */}
-          <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full opacity-20" 
-               style={{ background: 'linear-gradient(135deg, #FFD700, #FFA500)' }} 
+          {/* Cercles décoratifs professionnels */}
+          <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full opacity-15" 
+               style={{ background: 'linear-gradient(135deg, #4f7df5, #2765ec)' }} 
                aria-hidden="true" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full opacity-15" 
-               style={{ background: 'linear-gradient(135deg, #E8E8E8, #C0C0C0)' }} 
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full opacity-12" 
+               style={{ background: 'linear-gradient(135deg, #93b5ff, #6794ff)' }} 
                aria-hidden="true" />
         </div>
       </section>
