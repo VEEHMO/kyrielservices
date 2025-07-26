@@ -334,28 +334,28 @@ body::before {
   animation: pulse-glow 4s ease-in-out infinite;
 }
 
-/* Blobs de gradient luxueux */
+/* Blobs de gradient professionnels */
 .gradient-blob {
   border-radius: 50%;
   background: radial-gradient(circle at center, var(--primary), transparent 70%);
-  filter: blur(60px);
-  opacity: 0.2;
+  filter: blur(80px);
+  opacity: 0.08;
   mix-blend-mode: multiply;
   position: absolute;
   pointer-events: none;
-  animation: luxury-float 15s ease-in-out infinite;
+  animation: luxury-float 20s ease-in-out infinite;
 }
 
-.gradient-blob.gold {
-  background: radial-gradient(circle at center, var(--gold), var(--gold-light), transparent 70%);
-  filter: blur(80px);
-  opacity: 0.15;
+.gradient-blob.blue-light {
+  background: radial-gradient(circle at center, var(--blue-300), var(--blue-200), transparent 70%);
+  filter: blur(100px);
+  opacity: 0.06;
 }
 
-.gradient-blob.silver {
-  background: radial-gradient(circle at center, var(--silver), var(--silver-light), transparent 70%);
-  filter: blur(70px);
-  opacity: 0.18;
+.gradient-blob.blue-deep {
+  background: radial-gradient(circle at center, var(--blue-800), var(--blue-700), transparent 70%);
+  filter: blur(90px);
+  opacity: 0.09;
 }
 
 .blob-1 {
@@ -371,16 +371,16 @@ body::before {
   height: 400px;
   bottom: -150px;
   right: -100px;
-  animation-delay: 5s;
+  animation-delay: 7s;
 }
 
 .blob-3 {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation-delay: 10s;
+  animation-delay: 14s;
 }
 
 /* Panneaux de verre sophistiqués */
