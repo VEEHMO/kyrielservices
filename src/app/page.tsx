@@ -7,11 +7,12 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import SectionSeparator from "@/components/ui/SectionSeparator";
 import {
   GlowingDot,
-  Glow,
-  FloatingParticles,
-  Grid,
-  CodeBlock,
-  WaterDropEffect
+  LuxuryGlow,
+  LuxuryParticles,
+  PremiumGrid,
+  PremiumCodeBlock,
+  LuxuryWaterDropEffect,
+  MetallicOrb
 } from "@/components/ui/Decorations";
 import PowerBIDashboard from "@/components/ui/PowerBIDashboard";
 
