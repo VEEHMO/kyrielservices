@@ -1,20 +1,20 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
-import Icon from "@/components/ui/Icon";
 import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import Icon from "@/components/ui/Icon";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
-import SectionSeparator from "@/components/ui/SectionSeparator";
+import PowerBIDashboard from "@/components/ui/PowerBIDashboard";
+import WebExperienceDashboard from "@/components/ui/WebExperienceDashboard";
+import ServicesProgressBar from "@/components/ui/ServicesProgressBar";
 import {
   GlowingDot,
   LuxuryGlow,
   LuxuryParticles,
-  PremiumGrid,
   PremiumCodeBlock,
   LuxuryWaterDropEffect,
   MetallicOrb
 } from "@/components/ui/Decorations";
-import PowerBIDashboard from "@/components/ui/PowerBIDashboard";
 
 // Animation variants
 const fadeInUp = {
@@ -40,27 +40,110 @@ const staggerChildren = {
 const AnimatedLogo = () => {
   return (
     <div className="flex justify-center mb-6">
-      <Image
-        src="/images/Kyriel_Services_Gemini_-_Logo_seul_-_900px.png"
-        alt="Kyriel Services Logo"
-        width={80}
-        height={80}
-        className="animate-float"
-      />
+      <div className="text-4xl font-bold text-primary animate-float">
+        Kyriel Services
+      </div>
     </div>
   );
 };
 
-// Composant pour encapsuler les animations de dashboard et éviter les erreurs d'hydratation
+// Composant pour encapsuler les animations de dashboard avec système de chevauchement et écartement
 const DashboardAnimations = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    // Démarrer immédiatement les animations
+    setIsVisible(true);
+    
+    // Écouter le scroll pour l'effet d'écartement
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const progress = Math.min(scrollY / (documentHeight - windowHeight), 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="dashboard-animations" aria-hidden="true">
-      <div className="animation-container">
+    <div className="dashboard-animations-container" aria-hidden="true">
+      <motion.div
+        className="animation-overlap-container"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ 
+          opacity: isVisible ? 1 : 0, 
+          scale: isVisible ? 1 : 0.8,
+          rotateZ: scrollProgress * 360, // Rotation basée sur le scroll
+          x: scrollProgress * 100, // Déplacement horizontal
+          y: scrollProgress * -50 // Déplacement vertical
+        }}
+        transition={{ 
+          duration: 0.8, 
+          ease: "easeOut",
+          staggerChildren: 0.2
+        }}
+      >
+        {/* Animation 1 - Code Block */}
+        <motion.div
+          className="animation-item code-animation"
+          initial={{ opacity: 0, x: -50, y: -30 }}
+          animate={{ 
+            opacity: 1, 
+            x: scrollProgress * 150, // Écartement vers la droite
+            y: scrollProgress * -80, // Écartement vers le haut
+            rotateZ: scrollProgress * 180 // Rotation individuelle
+          }}
+          transition={{ 
+            duration: 0.6, 
+            ease: "easeOut",
+            delay: 0.1
+          }}
+        >
         <PremiumCodeBlock className="z-10 relative animate-float" />
-      </div>
-      <div className="animation-container">
+        </motion.div>
+
+        {/* Animation 2 - PowerBI Dashboard */}
+        <motion.div
+          className="animation-item dashboard-animation"
+          initial={{ opacity: 0, x: 50, y: 30 }}
+          animate={{ 
+            opacity: 1, 
+            x: scrollProgress * -150, // Écartement vers la gauche
+            y: scrollProgress * 80, // Écartement vers le bas
+            rotateZ: scrollProgress * -180 // Rotation inverse
+          }}
+          transition={{ 
+            duration: 0.6, 
+            ease: "easeOut",
+            delay: 0.3
+          }}
+        >
         <PowerBIDashboard className="z-10 relative animate-float" />
-      </div>
+        </motion.div>
+
+        {/* Animation 3 - Particules flottantes */}
+        <motion.div
+          className="animation-item particles-animation"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ 
+            opacity: 0.6, 
+            scale: 1 + scrollProgress * 0.5,
+            x: scrollProgress * 200 * Math.sin(scrollProgress * Math.PI),
+            y: scrollProgress * 100 * Math.cos(scrollProgress * Math.PI)
+          }}
+          transition={{ 
+            duration: 0.8, 
+            ease: "easeOut",
+            delay: 0.5
+          }}
+        >
+          <LuxuryParticles count={8} className="opacity-60" />
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
@@ -71,7 +154,7 @@ const ServiceCard = ({
   title,
   description
 }: {
-  iconName: string;
+  iconName: "automation" | "tools" | "web" | "communication";
   title: string;
   description: string;
 }) => {
@@ -97,12 +180,98 @@ const ServiceCard = ({
   );
 };
 
+// Composant d'animation de base de données inspiré des images
+const DatabaseAnimation = () => {
+  return (
+    <div className="database-animation-container w-full h-full flex items-center justify-center">
+      <div className="database-scaling flex items-center gap-8">
+        <motion.div
+          className="database-cylinder small"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <div className="cylinder-body w-8 h-12 bg-gradient-to-b from-gray-300 to-gray-400 rounded-t-lg border-2 border-gray-500 relative">
+            <div className="absolute inset-1 bg-gradient-to-b from-gray-200 to-gray-300 rounded-t-sm"></div>
+          </div>
+          <div className="cylinder-base w-10 h-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded shadow-lg"></div>
+        </motion.div>
+        
+        <motion.div
+          className="database-cylinder medium"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+        >
+          <div className="cylinder-body w-9 h-14 bg-gradient-to-b from-gray-300 to-gray-400 rounded-t-lg border-2 border-gray-500 relative">
+            <div className="absolute inset-1 bg-gradient-to-b from-gray-200 to-gray-300 rounded-t-sm"></div>
+          </div>
+          <div className="cylinder-base w-11 h-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded shadow-lg"></div>
+        </motion.div>
+        
+        <motion.div
+          className="database-cylinder large"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          <div className="cylinder-body w-10 h-16 bg-gradient-to-b from-gray-300 to-gray-400 rounded-t-lg border-2 border-gray-500 relative">
+            <div className="absolute inset-1 bg-gradient-to-b from-gray-200 to-gray-300 rounded-t-sm"></div>
+          </div>
+          <div className="cylinder-base w-12 h-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded shadow-lg"></div>
+        </motion.div>
+        
+        {/* Flèches de progression */}
+        <motion.div
+          className="progress-arrow absolute w-16 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg"
+          style={{ left: '35px', top: '50%', transform: 'translateY(-50%)' }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.5, delay: 0.8 }}
+        />
+        <motion.div
+          className="progress-arrow absolute w-16 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg"
+          style={{ left: '85px', top: '50%', transform: 'translateY(-50%)' }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.5, delay: 1.0 }}
+        />
+      </div>
+    </div>
+  );
+};
+
 export default function HomePage() {
+  const [servicesScrollProgress, setServicesScrollProgress] = useState(0);
+  const servicesSectionRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const handleServicesScroll = () => {
+      if (servicesSectionRef.current) {
+        const rect = servicesSectionRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Calculer le progrès de scroll dans la section Services
+        if (rect.top <= windowHeight && rect.bottom >= 0) {
+          const sectionHeight = rect.height;
+          const scrollInSection = windowHeight - rect.top;
+          const progress = Math.min(Math.max(scrollInSection / sectionHeight, 0), 1);
+          setServicesScrollProgress(progress);
+        } else {
+          setServicesScrollProgress(0);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleServicesScroll);
+    return () => window.removeEventListener('scroll', handleServicesScroll);
+  }, []);
+
   return (
     <div className="relative overflow-hidden">
       {/* Éléments décoratifs professionnels pour l'ensemble de la page */}
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
-        <PremiumGrid className="opacity-6" />
         <MetallicOrb size={450} color="blue" x={88} y={12} />
         <MetallicOrb size={350} color="lightblue" x={8} y={75} />
         <MetallicOrb size={280} color="darkblue" x={78} y={88} />
@@ -176,9 +345,109 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionSeparator color="premium" width="200px" />
+      {/* Transition fluide sans barre de séparation */}
 
-      {/* Solutions Section */}
+      {/* Services Premium - Animation progressive basée sur le scroll */}
+      <section
+        ref={servicesSectionRef}
+        className="section bg-professional-pattern relative overflow-hidden services-section" aria-labelledby="services-heading">
+        {/* <ServicesProgressBar sectionRef={servicesSectionRef} introRef={introRef} /> */}
+        <div className="container-custom">
+          {/* Points lumineux décoratifs professionnels */}
+          <div aria-hidden="true">
+            <GlowingDot x={8} y={25} size={12} color="#2765ec" />
+            <GlowingDot x={92} y={55} size={16} delay={1} color="#4f7df5" />
+            <GlowingDot x={12} y={85} size={14} delay={2} color="#1f50d8" />
+            <GlowingDot x={88} y={15} size={18} delay={0.5} color="#6794ff" />
+          </div>
+          <RevealOnScroll>
+            <h2 id="services-heading" className="section-title gradient-heading-professional">
+              Services d'Excellence
+            </h2>
+          </RevealOnScroll>
+          <RevealOnScroll>
+            <p ref={introRef} className="section-subtitle text-xl">
+              Transformez votre vision en réalité avec nos solutions premium qui redéfinissent les standards de l'excellence technologique.
+            </p>
+          </RevealOnScroll>
+
+          {/* Nouveau système d'animations progressives avec aération augmentée */}
+          <div className="services-progressive-container">
+            {/* Service 1 - Automatisation */}
+            <motion.div
+              className="service-animation-pair flex flex-row"
+              style={{ gap: '200px' }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            >
+              <div className="service-card-container">
+                <ServiceCard
+                  iconName="automation"
+                  title="Automatisation Intelligente"
+                  description="Révolutionnez vos opérations avec des systèmes d'automatisation de pointe qui libèrent le potentiel de votre équipe."
+                />
+              </div>
+              <div className="animation-preview-container">
+                <div className="code-editor-preview" style={{ width: '480px', height: '420px' }}>
+                  <PremiumCodeBlock className="z-10 relative" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Service 2 - Solutions Technologiques (inversé) */}
+            <motion.div
+              className="service-animation-pair flex flex-row"
+              style={{ gap: '200px' }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            >
+              <div className="animation-preview-container">
+                <div className="dashboard-preview" style={{ width: '480px', height: '420px' }}>
+                  <PowerBIDashboard />
+                </div>
+              </div>
+              <div className="service-card-container">
+                <ServiceCard
+                  iconName="tools"
+                  title="Solutions Technologiques Avancées"
+                  description="Outils sur-mesure utilisant l'IA, Python, Power BI et technologies cloud pour une performance optimale."
+                />
+              </div>
+            </motion.div>
+
+            {/* Service 3 - Expériences Digitales */}
+            <motion.div
+              className="service-animation-pair flex flex-row"
+              style={{ gap: '200px' }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+            >
+              <div className="service-card-container">
+                <ServiceCard
+                  iconName="web"
+                  title="Expériences Digitales Premium"
+                  description="Créations web exceptionnelles qui captivent vos audiences et renforcent votre présence numérique."
+                />
+              </div>
+              <div className="animation-preview-container">
+                <div className="database-preview" style={{ width: '480px', height: '420px' }}>
+                  <WebExperienceDashboard />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Transition fluide sans barre de séparation */}
+
+      {/* Solutions Section - Déplacée après Services */}
       <section className="section relative glass-panel-premium" aria-labelledby="solutions-heading">
         <div className="container-custom">
           <LuxuryWaterDropEffect className="opacity-40" aria-hidden="true" />
@@ -206,7 +475,7 @@ export default function HomePage() {
                   <div className="absolute -z-10 right-0 top-0 w-40 h-40 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-pulse-glow" 
                        style={{ background: 'linear-gradient(135deg, #4f7df5, #2765ec)' }} 
                        aria-hidden="true" />
-                  <DashboardAnimations />
+                  {/* Animation supprimée - Section simplifiée */}
                 </div>
               </div>
             </div>
@@ -214,79 +483,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionSeparator color="premium" width="160px" />
+      {/* Transition fluide sans barre de séparation */}
 
-      {/* Services Premium */}
-      <section className="section bg-professional-pattern relative overflow-hidden" aria-labelledby="services-heading">
-        <div className="container-custom">
-          {/* Points lumineux décoratifs professionnels */}
-          <div aria-hidden="true">
-            <GlowingDot x={8} y={25} size={12} color="#2765ec" />
-            <GlowingDot x={92} y={55} size={16} delay={1} color="#4f7df5" />
-            <GlowingDot x={12} y={85} size={14} delay={2} color="#1f50d8" />
-            <GlowingDot x={88} y={15} size={18} delay={0.5} color="#6794ff" />
-          </div>
-
-          <RevealOnScroll>
-            <h2 id="services-heading" className="section-title gradient-heading-professional">
-              Services d'Excellence
-            </h2>
-          </RevealOnScroll>
-          <RevealOnScroll>
-            <p className="section-subtitle text-xl">
-              Transformez votre vision en réalité avec nos solutions premium qui redéfinissent les standards de l'excellence technologique.
-            </p>
-          </RevealOnScroll>
-
-          <div className="grid-cols-1-4 mt-16 gap-8">
-            <RevealOnScroll direction="up" delay={0}>
-              <ServiceCard
-                iconName="automation"
-                title="Automatisation Intelligente"
-                description="Révolutionnez vos opérations avec des systèmes d'automatisation de pointe qui libèrent le potentiel de votre équipe."
-              />
-            </RevealOnScroll>
-
-            <RevealOnScroll direction="up" delay={100}>
-              <ServiceCard
-                iconName="tools"
-                title="Solutions Technologiques Avancées"
-                description="Outils sur-mesure utilisant l'IA, Python, Power BI et technologies cloud pour une performance optimale."
-              />
-            </RevealOnScroll>
-
-            <RevealOnScroll direction="up" delay={200}>
-              <ServiceCard
-                iconName="web"
-                title="Expériences Digitales Premium"
-                description="Créations web exceptionnelles qui captivent vos audiences et renforcent votre présence numérique."
-              />
-            </RevealOnScroll>
-
-            <RevealOnScroll direction="up" delay={300}>
-              <ServiceCard
-                iconName="communication"
-                title="Stratégie Digitale 360°"
-                description="Communication omnicanale sophistiquée qui amplifie votre impact et votre influence sur le marché."
-              />
-            </RevealOnScroll>
-          </div>
-        </div>
-      </section>
-
-      <SectionSeparator color="premium" width="140px" />
-
-      {/* Call to Action Premium */}
-      <section className="section glass-panel-premium relative overflow-hidden" aria-labelledby="cta-heading">
+      {/* Call to Action Premium - Transition immersive refondue */}
+      <section className="section excellence-section relative overflow-hidden" aria-labelledby="cta-heading">
         <div className="container-custom">
           <div className="max-w-5xl mx-auto text-center relative z-10">
             <RevealOnScroll>
-              <h2 id="cta-heading" className="text-4xl md:text-5xl font-bold mb-6 gradient-heading-blue">
+              <h2 id="cta-heading" className="text-4xl md:text-5xl font-bold mb-6 excellence-title">
                 Libérez Votre Excellence
               </h2>
             </RevealOnScroll>
             <RevealOnScroll delay={100}>
-              <p className="text-2xl text-gray-600 mb-12 leading-relaxed max-w-4xl mx-auto">
+              <p className="text-2xl text-white mb-12 leading-relaxed max-w-4xl mx-auto excellence-subtitle">
                 Rejoignez l'élite des entrepreneurs visionnaires qui transforment leurs ambitions en succès extraordinaires grâce à notre expertise technologique de pointe.
               </p>
             </RevealOnScroll>
@@ -294,7 +503,7 @@ export default function HomePage() {
               <div className="inline-block">
                 <Link
                   href="/contact"
-                  className="btn btn-accent btn-lg btn-beam group hover-lift"
+                  className="btn btn-accent btn-lg btn-beam group hover-lift excellence-button"
                   aria-label="Contactez-nous pour démarrer votre transformation"
                 >
                   <span className="flex items-center text-lg font-bold">
@@ -308,16 +517,12 @@ export default function HomePage() {
             </RevealOnScroll>
           </div>
 
-          {/* Effets décoratifs professionnels sophistiqués */}
-          <div className="absolute top-0 left-0 w-full h-32 opacity-10 transform -skew-y-1" 
-               style={{ background: 'linear-gradient(135deg, #4f7df5, #2765ec)' }} 
-               aria-hidden="true" />
-          <div className="absolute bottom-0 right-0 w-full h-32 opacity-08 transform skew-y-1" 
-               style={{ background: 'linear-gradient(135deg, #93b5ff, #6794ff)' }} 
-               aria-hidden="true" />
-          
-          {/* Particules bleues */}
-          <LuxuryParticles count={12} className="opacity-30" />
+          {/* Nouvelle transition immersive : dégradé animé + particules + effet de lumière */}
+          <div className="absolute inset-0 pointer-events-none z-0">
+            <div className="excellence-gradient-bg" />
+            <LuxuryParticles count={18} className="opacity-40" />
+            <LuxuryGlow className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" width={180} height={180} intensity="ultra" />
+          </div>
         </div>
       </section>
     </div>

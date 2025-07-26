@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
 
 export const GlowingDot = ({
   color = "#188ce4",
@@ -203,10 +204,15 @@ export const LuxuryParticles = ({ count = 25, className = '' }) => {
 
 export const FloatingParticles = LuxuryParticles; // Alias pour compatibilité
 
-export const PremiumCodeBlock = ({ className = '' }) => {
+interface PremiumCodeBlockProps {
+  className?: string;
+  children?: React.ReactNode;
+}
+
+export const PremiumCodeBlock = ({ className = '', children }: PremiumCodeBlockProps) => {
   return (
     <motion.div
-      className={`bg-slate-900 rounded-xl shadow-2xl overflow-hidden relative ${className}`}
+      className={`bg-slate-900 rounded-2xl shadow-2xl p-4 relative w-full h-full flex flex-col ${className}`}
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -215,7 +221,7 @@ export const PremiumCodeBlock = ({ className = '' }) => {
       }}
     >
       {/* Barre de titre avec effet métallique */}
-      <div className="flex items-center px-6 py-3 bg-gradient-to-r from-slate-800 to-slate-700 border-b border-slate-600">
+      <div className="flex items-center px-6 py-3 bg-gradient-to-r from-slate-800 to-slate-700 border-b border-slate-600 rounded-t-2xl">
         <div className="flex space-x-3">
           <motion.div 
             className="w-3 h-3 bg-red-500 rounded-full"
@@ -236,110 +242,114 @@ export const PremiumCodeBlock = ({ className = '' }) => {
         <div className="ml-4 text-gray-300 text-sm font-mono font-medium">kyriel-automation.js</div>
         <div className="ml-auto text-xs text-slate-400">●</div>
       </div>
-      
       {/* Code avec syntax highlighting amélioré */}
       <div className="p-6 text-slate-300 font-mono text-sm leading-relaxed">
-        <motion.div className="flex" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-          <span className="text-slate-500 mr-4 select-none">1</span>
-          <span className="text-purple-400">import</span>
-          <span className="text-white mx-2">{`{`}</span>
-          <span className="text-yellow-300">AutomationEngine</span>
-          <span className="text-white">{`}`}</span>
-          <span className="text-purple-400 ml-2">from</span>
-          <span className="text-green-300 ml-2">'@kyriel/automation'</span>
-          <span className="text-white">;</span>
-        </motion.div>
+          <motion.div className="flex" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+            <span className="text-slate-500 mr-4 select-none">1</span>
+            <span className="text-purple-400">import</span>
+            <span className="text-white mx-2">{`{`}</span>
+            <span className="text-yellow-300">AutomationEngine</span>
+            <span className="text-white">{`}`}</span>
+            <span className="text-purple-400 ml-2">from</span>
+            <span className="text-green-300 ml-2">'@kyriel/automation'</span>
+            <span className="text-white">;</span>
+          </motion.div>
+          
+          <motion.div className="flex mt-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+            <span className="text-slate-500 mr-4 select-none">2</span>
+            <span></span>
+          </motion.div>
+          
+          <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
+            <span className="text-slate-500 mr-4 select-none">3</span>
+            <span className="text-blue-400">const</span>
+            <span className="text-yellow-300 ml-2">engine</span>
+            <span className="text-white ml-2">=</span>
+            <span className="text-blue-400 ml-2">new</span>
+            <span className="text-cyan-300 ml-2">AutomationEngine</span>
+            <span className="text-white">({`{`}</span>
+          </motion.div>
+          
+          <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
+            <span className="text-slate-500 mr-4 select-none">4</span>
+            <span className="ml-8 text-orange-400">apiKey:</span>
+            <span className="text-green-300 ml-2">'kyriel_premium_2024'</span>
+            <span className="text-white">,</span>
+          </motion.div>
+          
+          <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0 }}>
+            <span className="text-slate-500 mr-4 select-none">5</span>
+            <span className="ml-8 text-orange-400">mode:</span>
+            <span className="text-green-300 ml-2">'enterprise'</span>
+          </motion.div>
+          
+          <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
+            <span className="text-slate-500 mr-4 select-none">6</span>
+            <span className="text-white">{`});`}</span>
+          </motion.div>
+          
+          <motion.div className="flex mt-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}>
+            <span className="text-slate-500 mr-4 select-none">7</span>
+            <span></span>
+          </motion.div>
+          
+          <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}>
+            <span className="text-slate-500 mr-4 select-none">8</span>
+            <span className="text-slate-400">// Automatisation révolutionnaire</span>
+          </motion.div>
+          
+          <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.8 }}>
+            <span className="text-slate-500 mr-4 select-none">9</span>
+            <span className="text-yellow-300">engine</span>
+            <span className="text-white">.</span>
+            <span className="text-blue-400">revolutionize</span>
+            <span className="text-white">('</span>
+            <span className="text-green-300">your-business</span>
+            <span className="text-white">');</span>
+          </motion.div>
+        </div>
         
-        <motion.div className="flex mt-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
-          <span className="text-slate-500 mr-4 select-none">2</span>
-          <span></span>
-        </motion.div>
+        {/* Effet de curseur clignotant */}
+        <motion.div
+          className="absolute bottom-6 right-6 w-2 h-5 bg-green-400"
+          animate={{ opacity: [1, 0, 1] }}
+          transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
+        />
         
-        <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-          <span className="text-slate-500 mr-4 select-none">3</span>
-          <span className="text-blue-400">const</span>
-          <span className="text-yellow-300 ml-2">engine</span>
-          <span className="text-white ml-2">=</span>
-          <span className="text-blue-400 ml-2">new</span>
-          <span className="text-cyan-300 ml-2">AutomationEngine</span>
-          <span className="text-white">({`{`}</span>
-        </motion.div>
-        
-        <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
-          <span className="text-slate-500 mr-4 select-none">4</span>
-          <span className="ml-8 text-orange-400">apiKey:</span>
-          <span className="text-green-300 ml-2">'kyriel_premium_2024'</span>
-          <span className="text-white">,</span>
-        </motion.div>
-        
-        <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0 }}>
-          <span className="text-slate-500 mr-4 select-none">5</span>
-          <span className="ml-8 text-orange-400">mode:</span>
-          <span className="text-green-300 ml-2">'enterprise'</span>
-        </motion.div>
-        
-        <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
-          <span className="text-slate-500 mr-4 select-none">6</span>
-          <span className="text-white">{`});`}</span>
-        </motion.div>
-        
-        <motion.div className="flex mt-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}>
-          <span className="text-slate-500 mr-4 select-none">7</span>
-          <span></span>
-        </motion.div>
-        
-        <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}>
-          <span className="text-slate-500 mr-4 select-none">8</span>
-          <span className="text-slate-400">// Automatisation révolutionnaire</span>
-        </motion.div>
-        
-        <motion.div className="flex mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.8 }}>
-          <span className="text-slate-500 mr-4 select-none">9</span>
-          <span className="text-yellow-300">engine</span>
-          <span className="text-white">.</span>
-          <span className="text-blue-400">revolutionize</span>
-          <span className="text-white">('</span>
-          <span className="text-green-300">your-business</span>
-          <span className="text-white">');</span>
-        </motion.div>
-      </div>
-      
-      {/* Effet de curseur clignotant */}
-      <motion.div
-        className="absolute bottom-6 right-6 w-2 h-5 bg-green-400"
-        animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
-      />
-      
-      {/* Effet de particules de code */}
-      <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-blue-400 rounded-full"
-            style={{
-              left: `${20 + i * 15}%`,
-              top: `${30 + i * 10}%`,
-            }}
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: i * 0.5,
-            }}
-          />
-        ))}
-      </div>
-    </motion.div>
+        {/* Effet de particules de code */}
+        <div className="absolute inset-0 pointer-events-none">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-blue-400 rounded-full"
+              style={{
+                left: `${20 + i * 15}%`,
+                top: `${30 + i * 10}%`,
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Number.POSITIVE_INFINITY,
+                delay: i * 0.5,
+              }}
+            />
+          ))}
+        </div>
+      </motion.div>
   );
 };
 
 export const CodeBlock = PremiumCodeBlock; // Alias pour compatibilité
 
-export const AnimatedGradientBorder = ({ className = '', children }) => {
+interface AnimatedGradientBorderProps {
+  className?: string;
+  children?: React.ReactNode;
+}
+
+export const AnimatedGradientBorder = ({ className = '', children }: AnimatedGradientBorderProps) => {
   return (
     <div className={`relative ${className}`}>
       <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#188ce4] via-[#4fb3ef] to-[#1581cf]

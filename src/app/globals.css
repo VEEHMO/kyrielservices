@@ -292,13 +292,27 @@ body::before {
   animation: border-rotate 6s linear infinite;
 }
 
+/* Animation de float optimisée */
+.animate-float {
+  animation: optimized-float 6s ease-in-out infinite;
+}
+
+@keyframes optimized-float {
+  0%, 100% { 
+    transform: translateY(0) rotateZ(0deg);
+  }
+  33% { 
+    transform: translateY(-6px) rotateZ(0.5deg);
+  }
+  66% { 
+    transform: translateY(-3px) rotateZ(-0.5deg);
+  }
+}
+
+/* Suppression de l'ancienne animation float qui causait des conflits */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
-}
-
-.animate-float {
-  animation: luxury-float 8s ease-in-out infinite;
 }
 
 .animate-gold-pulse {
@@ -963,11 +977,89 @@ body::before {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Dashboard animations container */
+/* Section Excellence - Transition immersive refondue */
+.excellence-section {
+  position: relative;
+  overflow: hidden;
+  background: none;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.excellence-gradient-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(135deg, #2765ec 0%, #1f50d8 30%, #4f7df5 70%, #2765ec 100%);
+  background-size: 400% 400%;
+  animation: excellence-gradient-flow 8s ease-in-out infinite;
+}
+
+@keyframes excellence-gradient-flow {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(1) saturate(1.1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.1) saturate(1.3);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(1) saturate(1.1);
+  }
+}
+
+.excellence-title {
+  background: linear-gradient(90deg, #ffffff 0%, #f0f8ff 30%, #ffffff 70%, #f0f8ff 100%);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: excellence-title-shimmer 4s linear infinite;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes excellence-title-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.excellence-subtitle {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+}
+
+.excellence-button {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+  background-size: 200% 200%;
+  animation: excellence-button-glow 3s ease-in-out infinite;
+  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+@keyframes excellence-button-glow {
+  0%, 100% {
+    background-position: 0% 50%;
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.2);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 12px 40px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4);
+  }
+}
+
+/* Animations Dashboard optimisées - Plus rapides et fluides */
 .dashboard-animations {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 300px;
 }
 
 .animation-container {
@@ -976,26 +1068,24 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  animation: fadeInOut 10s infinite;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
 }
 
-.animation-container:nth-child(1) {
-  animation-delay: 0s;
-}
-
+/* Suppression des animations CSS conflictuelles */
+.animation-container:nth-child(1),
 .animation-container:nth-child(2) {
-  animation-delay: 5s;
+  animation: none;
 }
 
 @keyframes fadeInOut {
-  0%, 45%, 100% {
-    opacity: 0;
-    z-index: 0;
-  }
-  50%, 95% {
+  0%, 100% {
     opacity: 1;
-    z-index: 10;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
   }
 }
 
@@ -1495,5 +1585,213 @@ body::before {
   html {
     touch-action: manipulation;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+}
+
+/* Barre bleue progressive avec effet glow */
+.progressive-blue-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #2765ec 0%, #4f7df5 50%, #6794ff 100%);
+  border-radius: 2px;
+  margin: 3rem 0;
+  box-shadow: 0 0 20px rgba(39, 101, 236, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.progressive-blue-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  animation: shimmer-glow 2s ease-in-out infinite;
+}
+
+@keyframes shimmer-glow {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+/* Barre verticale progressive pour la section Services */
+.services-vertical-progress-bar {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #2765ec, #1f50d8, transparent);
+  transform: translateX(-50%);
+  z-index: 5;
+  opacity: 0;
+  box-shadow: 0 0 15px rgba(39, 101, 236, 0.4);
+}
+
+.services-vertical-progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, #2765ec, #1f50d8);
+  transition: height 0.3s ease;
+}
+
+/* Services section - aération et tailles uniformes */
+.services-progressive-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  margin-top: 4rem;
+  position: relative;
+}
+
+.service-animation-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 500px;
+  position: relative;
+}
+
+/* Cases de services agrandies et aérées */
+.service-card-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(39, 101, 236, 0.1);
+  border-radius: 20px;
+  padding: 4rem 3rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.service-card-container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(39, 101, 236, 0.15);
+  border-color: rgba(39, 101, 236, 0.3);
+}
+
+.service-card-container .card-icon {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 2.5rem;
+  color: #2765ec;
+}
+
+.service-card-container h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.service-card-container p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #6b7280;
+  margin-bottom: 2.5rem;
+}
+
+/* Animations avec taille uniforme identique aux cases */
+.animation-preview-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(39, 101, 236, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.animation-preview-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(39, 101, 236, 0.05), rgba(31, 80, 216, 0.05));
+  border-radius: 20px;
+  z-index: -1;
+}
+
+/* Styles spécifiques pour chaque type d'animation */
+.code-editor-preview {
+  background: linear-gradient(135deg, #1e293b, #334155);
+  color: #e2e8f0;
+}
+
+.dashboard-preview {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+}
+
+.database-preview {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e2e8f0;
+}
+
+.analytics-preview {
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .services-progressive-container {
+    gap: 6rem;
+  }
+  
+  .service-animation-pair {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    min-height: auto;
+  }
+  
+  .service-card-container {
+    padding: 3rem 2.5rem;
+    min-height: 400px;
+  }
+  
+  .animation-preview-container {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-progressive-container {
+    gap: 4rem;
+  }
+  
+  .service-card-container {
+    padding: 2.5rem 2rem;
+    min-height: 350px;
+  }
+  
+  .service-card-container h3 {
+    font-size: 1.9rem;
+  }
+  
+  .service-card-container p {
+    font-size: 1.1rem;
+  }
+  
+  .animation-preview-container {
+    min-height: 350px;
+    padding: 1.5rem;
   }
 }
