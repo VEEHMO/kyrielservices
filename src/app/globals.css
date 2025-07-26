@@ -696,13 +696,71 @@ body::before {
 }
 
 .bg-subtle-pattern {
-  background-color: var(--background-end);
-  background-image: radial-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px);
-  background-size: 25px 25px;
+  background: 
+    var(--texture-grain),
+    radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.02) 0%, transparent 50%),
+    linear-gradient(135deg, #fafbff 0%, #f0f4ff 25%, #e8f2ff 50%, #f8faff 75%, #ffffff 100%);
+}
+
+.bg-luxury-pattern {
+  background: 
+    var(--texture-noise),
+    var(--luxury-grid),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+  position: relative;
+}
+
+.bg-luxury-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .shadow-soft {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow-medium {
+  box-shadow: var(--shadow-medium);
+}
+
+.shadow-luxury {
+  box-shadow: 
+    var(--shadow-strong),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Effets de hover avancés */
+.hover-lift {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.15));
+}
+
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 
+    var(--shadow-glow),
+    0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.hover-gold-glow:hover {
+  box-shadow: 
+    var(--shadow-gold-glow),
+    0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* Animations */
