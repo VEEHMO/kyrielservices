@@ -113,14 +113,14 @@ export default function HomePage() {
       <div className="gradient-blob blob-3" aria-hidden="true" />
 
       {/* Hero Section */}
-      <section className="section-lg bg-subtle-pattern relative overflow-hidden min-h-[calc(50vh)]" aria-labelledby="hero-heading">
+      <section className="section-lg bg-luxury-pattern relative overflow-hidden min-h-[calc(60vh)]" aria-labelledby="hero-heading">
         <div className="container-custom">
-          {/* Éléments décoratifs spécifiques à la section hero */}
-          <FloatingParticles count={15} className="opacity-40" aria-hidden="true" />
-          <Glow className="-top-20 -right-20" width={70} height={70} aria-hidden="true" />
+          {/* Éléments décoratifs luxueux spécifiques à la section hero */}
+          <LuxuryParticles count={20} className="opacity-60" aria-hidden="true" />
+          <LuxuryGlow className="-top-32 -right-32" width={80} height={80} intensity="high" aria-hidden="true" />
 
           <motion.div
-            className="max-w-5xl mx-auto text-center"
+            className="max-w-6xl mx-auto text-center relative z-10"
             initial="hidden"
             animate="visible"
             variants={staggerChildren}
@@ -128,47 +128,51 @@ export default function HomePage() {
             <AnimatedLogo />
             <motion.h1
               id="hero-heading"
-              className="text-4xl md:text-6xl font-bold mb-6 text-gray-700 leading-tight relative"
+              className="text-5xl md:text-7xl font-bold mb-8 text-gray-700 leading-tight relative"
               variants={fadeInUp}
             >
               <div className="inline-block relative">
-                <div className="absolute -top-10 -left-10" aria-hidden="true">
-                  <GlowingDot x={0} y={0} size={30} delay={0.5} />
+                <div className="absolute -top-12 -left-12" aria-hidden="true">
+                  <GlowingDot x={0} y={0} size={40} delay={0.5} color="#FFD700" />
                 </div>
               </div>
-              Nous construisons des solutions <span className="gradient-heading">informatiques</span> au service de votre <span className="gradient-heading">croissance</span>
+              Nous construisons des solutions <span className="gradient-heading-luxury">informatiques</span> au service de votre <span className="gradient-heading-gold">excellence</span>
             </motion.h1>
             <motion.p
-              className="text-xl text-gray-500 mb-10 max-w-3xl mx-auto"
+              className="text-2xl text-gray-500 mb-12 max-w-4xl mx-auto leading-relaxed"
               variants={fadeInUp}
             >
-              Kyriel Services crée des solutions d'automatisation innovantes qui révolutionnent vos opérations et font gagner du temps à votre entreprise.
+              Kyriel Services révolutionne votre entreprise avec des solutions d'automatisation premium qui transforment vos opérations et créent une valeur exceptionnelle.
             </motion.p>
             <motion.div
-              className="flex flex-col sm:flex-row gap-module-sm justify-center mb-10"
+              className="flex flex-col sm:flex-row gap-module justify-center mb-12"
               variants={fadeInUp}
             >
               <Link
                 href="/services"
-                className="btn btn-primary"
+                className="btn btn-primary hover-lift"
               >
-                <span className="relative z-10">Découvrir nos services</span>
+                <span className="relative z-10">Découvrir l'Excellence</span>
               </Link>
               <Link
                 href="/contact"
-                className="btn btn-outline group"
+                className="btn btn-outline group hover-glow"
               >
-                Contactez-nous
-                <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                Commencer votre Transformation
+                <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </Link>
             </motion.div>
           </motion.div>
 
-          {/* Cercles décoratifs */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary-50 opacity-30" aria-hidden="true" />
-          <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-primary-50 opacity-20" aria-hidden="true" />
+          {/* Cercles décoratifs métalliques */}
+          <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full opacity-20" 
+               style={{ background: 'linear-gradient(135deg, #FFD700, #FFA500)' }} 
+               aria-hidden="true" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full opacity-15" 
+               style={{ background: 'linear-gradient(135deg, #E8E8E8, #C0C0C0)' }} 
+               aria-hidden="true" />
         </div>
       </section>
 
