@@ -306,12 +306,17 @@ export default function HomePage() {
       <div className="gradient-blob blob-2" aria-hidden="true" />
       <div className="gradient-blob blob-3" aria-hidden="true" />
 
-      {/* Hero Section */}
+      {/* Hero Section avec animations avancées */}
       <section className="section-lg bg-professional-pattern relative overflow-hidden min-h-[calc(60vh)]" aria-labelledby="hero-heading">
+        <LightWave className="absolute inset-0" />
         <div className="container-custom">
-          {/* Éléments décoratifs professionnels spécifiques à la section hero */}
-          <LuxuryParticles count={18} className="opacity-50" aria-hidden="true" />
-          <LuxuryGlow className="-top-32 -right-32" width={85} height={85} intensity="high" aria-hidden="true" />
+          {/* Éléments décoratifs professionnels spécifiques à la section hero avec parallaxe */}
+          <ParallaxElement speed={0.5} className="absolute">
+            <LuxuryParticles count={18} className="opacity-50" aria-hidden="true" />
+          </ParallaxElement>
+          <ParallaxElement speed={0.7} className="absolute -top-32 -right-32">
+            <LuxuryGlow width={85} height={85} intensity="high" aria-hidden="true" />
+          </ParallaxElement>
 
           <motion.div
             className="max-w-6xl mx-auto text-center relative z-10"
@@ -319,65 +324,80 @@ export default function HomePage() {
             animate="visible"
             variants={staggerChildren}
           >
-            <AnimatedLogo />
-            <motion.h1
-              id="hero-heading"
-              className="text-5xl md:text-7xl font-bold mb-8 text-gray-700 leading-tight relative"
-              variants={fadeInUp}
-            >
-              <div className="inline-block relative">
-                <div className="absolute -top-12 -left-12" aria-hidden="true">
-                  <GlowingDot x={0} y={0} size={40} delay={0.5} color="#2765ec" />
-                </div>
-              </div>
-              Nous construisons des solutions <span className="gradient-heading-professional">informatiques</span> au service de votre <span className="gradient-heading-blue">excellence</span>
-            </motion.h1>
-            <motion.p
-              className="text-2xl text-gray-500 mb-12 max-w-4xl mx-auto leading-relaxed"
-              variants={fadeInUp}
-            >
-              Kyriel Services révolutionne votre entreprise avec des solutions d'automatisation premium qui transforment vos opérations et créent une valeur exceptionnelle.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-module justify-center mb-12"
-              variants={fadeInUp}
-            >
-              <Link
-                href="/services"
-                className="btn btn-metallic-gold hover-lift"
+            <MagneticReveal delay={0}>
+              <AnimatedLogo />
+            </MagneticReveal>
+            
+            <MagneticReveal delay={0.2}>
+              <motion.h1
+                id="hero-heading"
+                className="text-5xl md:text-7xl font-bold mb-8 text-gray-700 leading-tight relative"
+                variants={fadeInUp}
               >
-                <span className="relative z-10">Découvrir l'Excellence</span>
-                {/* Particules métalliques décoratives */}
-                <div className="metallic-particles">
-                  <div className="metallic-particle gold" style={{ top: '10%', left: '15%', animationDelay: '0s' }}></div>
-                  <div className="metallic-particle gold" style={{ top: '60%', right: '10%', animationDelay: '2s' }}></div>
-                  <div className="metallic-particle gold" style={{ top: '30%', left: '70%', animationDelay: '4s' }}></div>
+                <div className="inline-block relative">
+                  <ParallaxElement speed={0.2} className="absolute -top-12 -left-12">
+                    <GlowingDot x={0} y={0} size={40} delay={0.5} color="#2765ec" />
+                  </ParallaxElement>
                 </div>
-              </Link>
-              <Link
-                href="/contact"
-                className="btn btn-metallic-silver group hover-glow"
+                Nous construisons des solutions <span className="gradient-heading-professional">informatiques</span> au service de votre <span className="gradient-heading-blue">excellence</span>
+              </motion.h1>
+            </MagneticReveal>
+            
+            <MagneticReveal delay={0.4}>
+              <motion.p
+                className="text-2xl text-gray-500 mb-12 max-w-4xl mx-auto leading-relaxed"
+                variants={fadeInUp}
               >
-                <span className="relative z-10">Commencer votre Transformation</span>
-                <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                {/* Particules métalliques décoratives */}
-                <div className="metallic-particles">
-                  <div className="metallic-particle silver" style={{ top: '20%', left: '20%', animationDelay: '1s' }}></div>
-                  <div className="metallic-particle silver" style={{ top: '70%', right: '15%', animationDelay: '3s' }}></div>
-                </div>
-              </Link>
-            </motion.div>
+                Kyriel Services révolutionne votre entreprise avec des solutions d'automatisation premium qui transforment vos opérations et créent une valeur exceptionnelle.
+              </motion.p>
+            </MagneticReveal>
+            
+            <MagneticReveal delay={0.6}>
+              <motion.div
+                className="flex flex-col sm:flex-row gap-module justify-center mb-12"
+                variants={fadeInUp}
+              >
+                <Link
+                  href="/services"
+                  className="btn btn-metallic-gold hover-lift advanced-hover"
+                >
+                  <span className="relative z-10">Découvrir l'Excellence</span>
+                  {/* Particules métalliques décoratives */}
+                  <div className="metallic-particles">
+                    <div className="metallic-particle gold" style={{ top: '10%', left: '15%', animationDelay: '0s' }}></div>
+                    <div className="metallic-particle gold" style={{ top: '60%', right: '10%', animationDelay: '2s' }}></div>
+                    <div className="metallic-particle gold" style={{ top: '30%', left: '70%', animationDelay: '4s' }}></div>
+                  </div>
+                </Link>
+                <Link
+                  href="/contact"
+                  className="btn btn-metallic-silver group hover-glow advanced-hover"
+                >
+                  <span className="relative z-10">Commencer votre Transformation</span>
+                  <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  {/* Particules métalliques décoratives */}
+                  <div className="metallic-particles">
+                    <div className="metallic-particle silver" style={{ top: '20%', left: '20%', animationDelay: '1s' }}></div>
+                    <div className="metallic-particle silver" style={{ top: '70%', right: '15%', animationDelay: '3s' }}></div>
+                  </div>
+                </Link>
+              </motion.div>
+            </MagneticReveal>
           </motion.div>
 
-          {/* Cercles décoratifs professionnels */}
-          <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full opacity-15" 
-               style={{ background: 'linear-gradient(135deg, #4f7df5, #2765ec)' }} 
-               aria-hidden="true" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full opacity-12" 
-               style={{ background: 'linear-gradient(135deg, #93b5ff, #6794ff)' }} 
-               aria-hidden="true" />
+          {/* Cercles décoratifs professionnels avec parallaxe */}
+          <ParallaxElement speed={0.3} className="absolute -top-32 -right-32">
+            <div className="w-80 h-80 rounded-full opacity-15" 
+                 style={{ background: 'linear-gradient(135deg, #4f7df5, #2765ec)' }} 
+                 aria-hidden="true" />
+          </ParallaxElement>
+          <ParallaxElement speed={0.4} className="absolute -bottom-40 -left-40">
+            <div className="w-96 h-96 rounded-full opacity-12" 
+                 style={{ background: 'linear-gradient(135deg, #93b5ff, #6794ff)' }} 
+                 aria-hidden="true" />
+          </ParallaxElement>
         </div>
       </section>
 
