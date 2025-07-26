@@ -403,100 +403,118 @@ export default function HomePage() {
 
       {/* Transition fluide sans barre de séparation */}
 
-      {/* Services Premium - Animation progressive basée sur le scroll */}
+      {/* Services Premium - Animation progressive basée sur le scroll avec micro-interactions */}
       <section
         ref={servicesSectionRef}
         className="section bg-professional-pattern relative overflow-hidden services-section" aria-labelledby="services-heading">
-        {/* <ServicesProgressBar sectionRef={servicesSectionRef} introRef={introRef} /> */}
         <div className="container-custom">
-          {/* Points lumineux décoratifs professionnels */}
+          {/* Points lumineux décoratifs professionnels avec parallaxe */}
           <div aria-hidden="true">
-            <GlowingDot x={8} y={25} size={12} color="#2765ec" />
-            <GlowingDot x={92} y={55} size={16} delay={1} color="#4f7df5" />
-            <GlowingDot x={12} y={85} size={14} delay={2} color="#1f50d8" />
-            <GlowingDot x={88} y={15} size={18} delay={0.5} color="#6794ff" />
+            <ParallaxElement speed={0.2}>
+              <GlowingDot x={8} y={25} size={12} color="#2765ec" />
+            </ParallaxElement>
+            <ParallaxElement speed={0.4}>
+              <GlowingDot x={92} y={55} size={16} delay={1} color="#4f7df5" />
+            </ParallaxElement>
+            <ParallaxElement speed={0.3}>
+              <GlowingDot x={12} y={85} size={14} delay={2} color="#1f50d8" />
+            </ParallaxElement>
+            <ParallaxElement speed={0.5}>
+              <GlowingDot x={88} y={15} size={18} delay={0.5} color="#6794ff" />
+            </ParallaxElement>
           </div>
-          <RevealOnScroll>
-            <h2 id="services-heading" className="section-title gradient-heading-professional">
+          
+          <ScrollReveal direction="zoom" delay={0.2}>
+            <h2 id="services-heading" className="section-title gradient-heading-professional luxury-pulse">
               Services d'Excellence
             </h2>
-          </RevealOnScroll>
-          <RevealOnScroll>
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.4}>
             <p ref={introRef} className="section-subtitle text-xl">
               Transformez votre vision en réalité avec nos solutions premium qui redéfinissent les standards de l'excellence technologique.
             </p>
-          </RevealOnScroll>
+          </ScrollReveal>
 
           {/* Nouveau système d'animations progressives avec aération augmentée */}
           <div className="services-progressive-container">
             {/* Service 1 - Automatisation */}
-            <motion.div
-              className="service-animation-pair flex flex-row"
-              style={{ gap: '200px' }}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            >
-              <div className="service-card-container">
-                <ServiceCard
-                  iconName="automation"
-                  title="Automatisation Intelligente"
-                  description="Révolutionnez vos opérations avec des systèmes d'automatisation de pointe qui libèrent le potentiel de votre équipe."
-                />
-              </div>
-              <div className="animation-preview-container">
-                <div className="code-editor-preview" style={{ width: '480px', height: '420px' }}>
-                  <PremiumCodeBlock className="z-10 relative" />
+            <ScrollReveal direction="left" delay={0.2}>
+              <motion.div
+                className="service-animation-pair flex flex-row"
+                style={{ gap: '200px' }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              >
+                <div className="service-card-container advanced-hover luxury-pulse">
+                  <ServiceCard
+                    iconName="automation"
+                    title="Automatisation Intelligente"
+                    description="Révolutionnez vos opérations avec des systèmes d'automatisation de pointe qui libèrent le potentiel de votre équipe."
+                  />
                 </div>
-              </div>
-            </motion.div>
+                <div className="animation-preview-container">
+                  <LightWave className="absolute inset-0" />
+                  <div className="code-editor-preview" style={{ width: '480px', height: '420px' }}>
+                    <PremiumCodeBlock className="z-10 relative" />
+                  </div>
+                </div>
+              </motion.div>
+            </ScrollReveal>
 
             {/* Service 2 - Solutions Technologiques (inversé) */}
-            <motion.div
-              className="service-animation-pair flex flex-row"
-              style={{ gap: '200px' }}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            >
-              <div className="animation-preview-container">
-                <div className="dashboard-preview" style={{ width: '480px', height: '420px' }}>
-                  <PowerBIDashboard />
+            <ScrollReveal direction="right" delay={0.4}>
+              <motion.div
+                className="service-animation-pair flex flex-row"
+                style={{ gap: '200px' }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+              >
+                <div className="animation-preview-container">
+                  <LightWave className="absolute inset-0" />
+                  <div className="dashboard-preview" style={{ width: '480px', height: '420px' }}>
+                    <PowerBIDashboard />
+                  </div>
                 </div>
-              </div>
-              <div className="service-card-container">
-                <ServiceCard
-                  iconName="tools"
-                  title="Solutions Technologiques Avancées"
-                  description="Outils sur-mesure utilisant l'IA, Python, Power BI et technologies cloud pour une performance optimale."
-                />
-              </div>
-            </motion.div>
+                <div className="service-card-container advanced-hover luxury-pulse">
+                  <ServiceCard
+                    iconName="tools"
+                    title="Solutions Technologiques Avancées"
+                    description="Outils sur-mesure utilisant l'IA, Python, Power BI et technologies cloud pour une performance optimale."
+                  />
+                </div>
+              </motion.div>
+            </ScrollReveal>
 
             {/* Service 3 - Expériences Digitales */}
-            <motion.div
-              className="service-animation-pair flex flex-row"
-              style={{ gap: '200px' }}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-            >
-              <div className="service-card-container">
-                <ServiceCard
-                  iconName="web"
-                  title="Expériences Digitales Premium"
-                  description="Créations web exceptionnelles qui captivent vos audiences et renforcent votre présence numérique."
-                />
-              </div>
-              <div className="animation-preview-container">
-                <div className="database-preview" style={{ width: '480px', height: '420px' }}>
-                  <WebExperienceDashboard />
+            <ScrollReveal direction="left" delay={0.6}>
+              <motion.div
+                className="service-animation-pair flex flex-row"
+                style={{ gap: '200px' }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+              >
+                <div className="service-card-container advanced-hover luxury-pulse">
+                  <ServiceCard
+                    iconName="web"
+                    title="Expériences Digitales Premium"
+                    description="Créations web exceptionnelles qui captivent vos audiences et renforcent votre présence numérique."
+                  />
                 </div>
-              </div>
-            </motion.div>
+                <div className="animation-preview-container">
+                  <LightWave className="absolute inset-0" />
+                  <div className="database-preview" style={{ width: '480px', height: '420px' }}>
+                    <WebExperienceDashboard />
+                  </div>
+                </div>
+              </motion.div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
