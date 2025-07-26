@@ -18,7 +18,7 @@
   --accent-foreground: white;
   --accent-600: #d97706;
   --background-start: #ffffff;
-  --background-end: #f3f4f6;
+  --background-end: #f8fafc;
   --foreground: #1F2937;
   --muted: #F3F4F6;
   --muted-foreground: #6B7280;
@@ -28,6 +28,41 @@
   --blue-light: var(--primary-light);
   --gradient-stop-1: #f3f4f6;
   --gradient-stop-2: #e5e7eb;
+
+  /* Couleurs métalliques luxueuses */
+  --gold: #FFD700;
+  --gold-light: #FFF4B8;
+  --gold-dark: #B8860B;
+  --silver: #C0C0C0;
+  --silver-light: #E8E8E8;
+  --silver-dark: #808080;
+  --bronze: #CD7F32;
+  --bronze-light: #E6B366;
+  --bronze-dark: #8B4513;
+  --platinum: #E5E4E2;
+  --platinum-light: #F5F5F5;
+  --platinum-dark: #B8B8B0;
+
+  /* Gradients luxueux */
+  --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+  --gradient-silver: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A8A8A8 100%);
+  --gradient-bronze: linear-gradient(135deg, #E6B366 0%, #CD7F32 50%, #8B4513 100%);
+  --gradient-premium: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-luxury: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-royal: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+
+  /* Effets visuels avancés */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --shadow-strong: 0 24px 64px rgba(0, 0, 0, 0.16);
+  --shadow-glow: 0 0 32px rgba(37, 99, 235, 0.3);
+  --shadow-gold-glow: 0 0 32px rgba(255, 215, 0, 0.4);
+
+  /* Textures et patterns */
+  --texture-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  --texture-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.3' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 
   /* Module d'espacement de 8px */
   --spacing-0: 0;
