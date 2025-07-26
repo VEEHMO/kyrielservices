@@ -214,56 +214,60 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionSeparator color="light" width="120px" />
+      <SectionSeparator color="gold" width="160px" />
 
-      {/* Services Aperçu */}
-      <section className="section bg-subtle-pattern relative" aria-labelledby="services-heading">
+      {/* Services Premium */}
+      <section className="section bg-luxury-pattern relative overflow-hidden" aria-labelledby="services-heading">
         <div className="container-custom">
-          {/* Points lumineux décoratifs */}
+          {/* Points lumineux décoratifs premium */}
           <div aria-hidden="true">
-            <GlowingDot x={10} y={30} size={8} />
-            <GlowingDot x={90} y={60} size={12} delay={1} />
-            <GlowingDot x={15} y={80} size={10} delay={2} />
-            <GlowingDot x={85} y={20} size={15} delay={0.5} />
+            <GlowingDot x={8} y={25} size={12} color="#FFD700" />
+            <GlowingDot x={92} y={55} size={16} delay={1} color="#C0C0C0" />
+            <GlowingDot x={12} y={85} size={14} delay={2} color="#CD7F32" />
+            <GlowingDot x={88} y={15} size={18} delay={0.5} color="#667eea" />
           </div>
 
           <RevealOnScroll>
-            <h2 id="services-heading" className="section-title">Nos services</h2>
+            <h2 id="services-heading" className="section-title gradient-heading-luxury">
+              Services d'Excellence
+            </h2>
           </RevealOnScroll>
           <RevealOnScroll>
-            <p className="section-subtitle">Optimisez vos opérations, automatisez vos tâches répétitives, développez votre présence digitale.</p>
+            <p className="section-subtitle text-xl">
+              Transformez votre vision en réalité avec nos solutions premium qui redéfinissent les standards de l'excellence technologique.
+            </p>
           </RevealOnScroll>
 
-          <div className="grid-cols-1-4 mt-module-lg">
+          <div className="grid-cols-1-4 mt-16 gap-8">
             <RevealOnScroll direction="up" delay={0}>
               <ServiceCard
                 iconName="automation"
-                title="Automatisation"
-                description="Libérez du temps en automatisant vos tâches récurrentes."
+                title="Automatisation Intelligente"
+                description="Révolutionnez vos opérations avec des systèmes d'automatisation de pointe qui libèrent le potentiel de votre équipe."
               />
             </RevealOnScroll>
 
             <RevealOnScroll direction="up" delay={100}>
               <ServiceCard
                 iconName="tools"
-                title="Développement d'outils"
-                description="Excel, Python, Power BI pour un suivi optimal de votre activité."
+                title="Solutions Technologiques Avancées"
+                description="Outils sur-mesure utilisant l'IA, Python, Power BI et technologies cloud pour une performance optimale."
               />
             </RevealOnScroll>
 
             <RevealOnScroll direction="up" delay={200}>
               <ServiceCard
                 iconName="web"
-                title="Création de sites web"
-                description="Sites vitrines ou solutions sur-mesure selon vos besoins."
+                title="Expériences Digitales Premium"
+                description="Créations web exceptionnelles qui captivent vos audiences et renforcent votre présence numérique."
               />
             </RevealOnScroll>
 
             <RevealOnScroll direction="up" delay={300}>
               <ServiceCard
                 iconName="communication"
-                title="Communication digitale"
-                description="Renforcez votre visibilité et votre notoriété sur le web."
+                title="Stratégie Digitale 360°"
+                description="Communication omnicanale sophistiquée qui amplifie votre impact et votre influence sur le marché."
               />
             </RevealOnScroll>
           </div>
