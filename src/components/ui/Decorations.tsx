@@ -428,14 +428,14 @@ export const WaterDropEffect = LuxuryWaterDropEffect; // Alias pour compatibilit
 export const MetallicOrb = ({ 
   className = '', 
   size = 200,
-  color = 'gold',
+  color = 'blue',
   x = 50,
   y = 50 
 }) => {
   const gradients = {
-    gold: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%)',
-    silver: 'linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A8A8A8 100%)',
-    bronze: 'linear-gradient(135deg, #E6B366 0%, #CD7F32 50%, #8B4513 100%)',
+    blue: 'linear-gradient(135deg, #4f7df5 0%, #2765ec 50%, #1f50d8 100%)',
+    lightblue: 'linear-gradient(135deg, #93b5ff 0%, #6794ff 50%, #4f7df5 100%)',
+    darkblue: 'linear-gradient(135deg, #1a40c4 0%, #1530a3 100%)',
   };
 
   return (
@@ -446,18 +446,18 @@ export const MetallicOrb = ({
         height: size,
         left: `${x}%`,
         top: `${y}%`,
-        background: gradients[color] || gradients.gold,
+        background: gradients[color] || gradients.blue,
         transform: 'translate(-50%, -50%)',
-        filter: 'blur(40px)',
-        opacity: 0.15,
+        filter: 'blur(60px)',
+        opacity: 0.08,
       }}
       animate={{
-        scale: [1, 1.2, 1],
-        opacity: [0.1, 0.2, 0.1],
+        scale: [1, 1.15, 1],
+        opacity: [0.06, 0.12, 0.06],
         rotate: [0, 180, 360],
       }}
       transition={{
-        duration: 20,
+        duration: 25,
         ease: "easeInOut",
         repeat: Number.POSITIVE_INFINITY,
       }}
