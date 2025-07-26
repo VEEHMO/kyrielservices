@@ -56,7 +56,7 @@ const DashboardAnimations = () => {
   return (
     <div className="dashboard-animations" aria-hidden="true">
       <div className="animation-container">
-        <CodeBlock className="z-10 relative animate-float" />
+        <PremiumCodeBlock className="z-10 relative animate-float" />
       </div>
       <div className="animation-container">
         <PowerBIDashboard className="z-10 relative animate-float" />
